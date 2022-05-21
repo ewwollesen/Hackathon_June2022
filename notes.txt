@@ -1,1 +1,11 @@
 Just some notes to track while getting started.
+
+get list of workspaces that contain boards - plugins/focalboard/api/v1/workspaces
+
+  returns: 
+    {
+      "id": "mwp7s5dxzj8wingiaffj9poi4w",
+      "title": "playbooks, wayne",
+      "boardCount": 0
+    }
+
