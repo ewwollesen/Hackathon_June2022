@@ -1,11 +1,23 @@
 Just some notes to track while getting started.
 
-get list of workspaces that contain boards - plugins/focalboard/api/v1/workspaces
+Steps...
 
-  returns: 
-    {
-      "id": "mwp7s5dxzj8wingiaffj9poi4w",
-      "title": "playbooks, wayne",
-      "boardCount": 0
-    }
+Boards
 
+1. Create channel
+2. Create board from channel - This creates the workspace
+3. Create board - This creates 2 blocks and 1 card under the new workspace, a "board" block, "view" block, and a groups card.
+
+- A template is a block assigned to a single workspace.
+- A workspace with no boards and no templates will return an empty array
+
+4. Create groups - Groups are created inside of the group card inside a block
+5. Create cards - Cards are created under a block, assigned to a group in properties
+
+Playbooks
+
+1. Get all active playbook runs by playbook ID
+
+Todo:
+
+1. Investigate card properties and add links, etc
