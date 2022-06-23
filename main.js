@@ -1,6 +1,13 @@
+//init
+const dotenv = require('dotenv');
+
+// Load env vars
+dotenv.config({ path: './config/config.env' });
+
+//express init
 const express = require('express');
 const app = express();
-const port = 8080;
+const port = process.env.port | 8080;
 
 app.use(express.json());       // to support JSON-encoded bodies
 app.use(express.urlencoded()); // to support URL-encoded bodies
