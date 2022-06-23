@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ewwollesen/Hackathon_June2022/issues"
   },
-  "homepage": "https://github.com/ewwollesen/Hackathon_June2022#readme"
+  "homepage": "https://github.com/ewwollesen/Hackathon_June2022#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
 }
