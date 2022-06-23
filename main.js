@@ -2,9 +2,13 @@ const express = require('express');
 const app = express();
 const port = 8080;
 
+app.use(express.json());       // to support JSON-encoded bodies
+app.use(express.urlencoded()); // to support URL-encoded bodies
+
 app.post('/', (req, res) => {
-    console.log('Received post', req)
-    res.send(200);
+    var body = req.body;
+    console.log('Received post', body);
+    res.sendStatus(200);
 })
 
 app.listen(port, () => {
