@@ -6,7 +6,15 @@ Boards
 
 1. Create channel
 2. Create board from channel - This creates the workspace
-3. Create board - This creates 2 blocks and 1 card under the new workspace, a "board" block, "view" block, and a groups card.
+3. Create board - This creates 2 blocks and 1 card under the new workspace:
+   a. board block
+   I. Properties are created under this block and assigned to all cards
+   i. Owner
+   ii. URL of channel
+   iii. Status if overdue or current
+   b. view block
+   I. Visible properties are defined under this block
+   c. groups card
 
 - A template is a block assigned to a single workspace.
 - A workspace with no boards and no templates will return an empty array
@@ -21,3 +29,9 @@ Playbooks
 Todo:
 
 1. Investigate card properties and add links, etc
+   a. Channel URL - items.channel_id
+   b. Playbook Owner - items.owner_user_id
+   c. Status - overdue/current
+2. Find out how playbooks calculate the overdue status
+   You have to compute it. In the PlaybookRun model, you have the LastStatusUpdateAt field, which tells you when the last status update was posted. Then you have PreviousReminder, which is the time.Duration (nanoseconds) at which the next scheduled status update has to be posted
+   These three lines cover what you need, I think https://github.com/mattermost/mattermost-plugin-playbooks/blob/master/webapp/src/components/rhs/rhs_post_update.tsx#L44-L46
