@@ -11,32 +11,31 @@ import express from 'express';
 const app = express();
 const port = process.env.port | 8080;
 
-app.use(express.json());       // to support JSON-encoded bodies
+app.use(express.json()); // to support JSON-encoded bodies
 app.use(express.urlencoded()); // to support URL-encoded bodies
 
 app.post('/', (req, res) => {
-    var body = req.body;
-    console.log('Received post', body);
-    fetchBoards();
-    res.sendStatus(200);
-})
+  var body = req.body;
+  console.log('Received post', body);
+  fetchBoards();
+  res.sendStatus(200);
+});
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-})
-
+  console.log(`Example app listening on port ${port}`);
+});
 
 //TODO : Class/Mod later
 import fetch from 'node-fetch';
 function fetchBoards() {
-    const options = {
-        method: 'GET',
-        headers: {
-            'Authorization': 'Bearer ' + process.env.personalAccessToken,
-            'X-Requested-With':'XMLHttpRequest'
-        }
+  const options = {
+    method: 'GET',
+    headers: {
+      Authorization: 'Bearer ' + process.env.personalAccessToken,
+      'X-Requested-With': 'XMLHttpRequest'
     }
-    fetch(process.env.MMURL + 'plugins/focalboard/api/v1/workspaces')
-        .then(res => res.text())
-        .then(resText => console.log(resText));
+  };
+  fetch(process.env.MMURL + 'plugins/focalboard/api/v1/workspaces', options)
+    .then((res) => res.text())
+    .then((resText) => console.log(resText));
 }
