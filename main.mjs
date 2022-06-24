@@ -122,8 +122,8 @@ class Card {
       "isTemplate":false
     };
     this.title = title;
-    this.createAt = new Date();
-    this.updateAt = new Date();
+    this.createAt = Date.now();
+    this.updateAt = Date.now();
     this.deleteAt = 0;
     this.limited = false
   }
