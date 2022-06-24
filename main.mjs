@@ -278,10 +278,9 @@ function fetchPlaybookRuns(state) {
       })
     }
 
-    return {
-      'workspace':workspace,
-      'cards':cards
-    }
+    state.cards = cards;
+
+    return state;
   });
 }
 
