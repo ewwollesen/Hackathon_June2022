@@ -1,0 +1,538 @@
+GET all workspaces
+http://{{url}}/plugins/focalboard/api/v1/workspaces
+
+[
+    {
+        "id": "3ma1ut1597fiupq5ayo1qcakbc",
+        "title": "Off-Topic",
+        "boardCount": 0
+    },
+    {
+        "id": "9bejn9w943b3ieu5rgrs1mtdzw",
+        "title": "wayne, playbooks",
+        "boardCount": 0
+    }
+]
+
+========================
+========================
+POST create new board
+http://{{url}}/plugins/focalboard/api/v1/workspaces/{{workspace id}}/blocks
+note: This is an array that creates two blocks. A "board" block and a "view" block.
+
+[
+   {
+      "id":"7zs1f33uoych1c6ucd5t77q4f3x",
+      "schema":1,
+      "workspaceId":"",
+      "parentId":"",
+      "rootId":"7zs1f33uoych1c6ucd5t77q4f3x",
+      "createdBy":"",
+      "modifiedBy":"",
+      "type":"board",
+      "fields":{
+         "showDescription":false,
+         "description":"",
+         "icon":"",
+         "isTemplate":false,
+         "templateVer":0,
+         "columnCalculations":[
+            
+         ],
+         "cardProperties":[
+            {
+               "id":"azr3oh9ko8hc5yfsmapchkpmp4x",
+               "name":"Status",
+               "type":"select",
+               "options":[
+                  
+               ]
+            }
+         ]
+      },
+      "title":"Open Playbooks Dashboard",
+      "createAt":1655409199321,
+      "updateAt":1655409199321,
+      "deleteAt":0,
+      "limited":false
+   },
+   {
+      "id":"735bmk4s7sy31tieei6pgzuxw8x",
+      "schema":1,
+      "workspaceId":"",
+      "parentId":"7zs1f33uoych1c6ucd5t77q4f3x",
+      "rootId":"7zs1f33uoych1c6ucd5t77q4f3x",
+      "createdBy":"",
+      "modifiedBy":"",
+      "type":"view",
+      "fields":{
+         "viewType":"board",
+         "sortOptions":[
+            
+         ],
+         "visiblePropertyIds":[
+            
+         ],
+         "visibleOptionIds":[
+            
+         ],
+         "hiddenOptionIds":[
+            
+         ],
+         "collapsedOptionIds":[
+            
+         ],
+         "filter":{
+            "operation":"and",
+            "filters":[
+               
+            ]
+         },
+         "cardOrder":[
+            
+         ],
+         "columnWidths":{
+            
+         },
+         "columnCalculations":{
+            
+         },
+         "kanbanCalculations":{
+            
+         },
+         "defaultTemplateId":""
+      },
+      "title":"Board view",
+      "createAt":1655409199321,
+      "updateAt":1655409199321,
+      "deleteAt":0,
+      "limited":false
+   }
+]
+
+========================
+========================
+PATCH create groups
+http://{{url}}/plugins/focalboard/api/v1/workspaces/{{workspace id}}/blocks/{{block id}}
+note: we could probably add this to the create board call above to create them at the same time I just haven't tested it yet
+
+{
+   "updatedFields":{
+      "cardProperties":[
+         {
+            "id":"azr3oh9ko8hc5yfsmapchkpmp4x",
+            "name":"Status",
+            "type":"select",
+            "options":[
+               {
+                  "id":"aqr5d3xx3wnpsr56cz3cr8ytwre",
+                  "value":"> week",
+                  "color":"propColorGreen"
+               },
+               {
+                  "id":"aqr5d3xx3wnpsr56cz3cr8ytwr1",
+                  "value":"1-2 weeks",
+                  "color":"propColorYellow"
+               },
+               {
+                  "id":"aqr5d3xx3wnpsr56cz3cr8ytwr2",
+                  "value":"> 2 weeks",
+                  "color":"propColorRed"
+               }
+            ]
+         }
+      ]
+   },
+   "deletedFields":[
+      
+   ]
+}
+
+========================
+========================
+POST create card
+http://{{url}}/plugins/focalboard/api/v1/workspaces/{{workspace id}}/blocks
+
+[
+   {
+      "id":"75rgsaosis1s68znmh9yjqpjht1",
+      "schema":1,
+      "workspaceId":"",
+      "parentId":"busrqbe7jhtbf9rxxi3kgy4tboh",
+      "rootId":"busrqbe7jhtbf9rxxi3kgy4tboh",
+      "createdBy":"",
+      "modifiedBy":"",
+      "type":"card",
+      "fields":{
+         "icon":"",
+         "properties":{
+            "azr3oh9ko8hc5yfsmapchkpmp4x":"aqr5d3xx3wnpsr56cz3cr8ytwre"
+         },
+         "contentOrder":[
+            
+         ],
+         "isTemplate":false
+      },
+      "title":"New Incident",
+      "createAt":1655490127065,
+      "updateAt":1655490127065,
+      "deleteAt":0,
+      "limited":false
+   },
+   {
+      "id":"75rgsaosis1s68znmh9yjqpjht2",
+      "schema":1,
+      "workspaceId":"",
+      "parentId":"busrqbe7jhtbf9rxxi3kgy4tboh",
+      "rootId":"busrqbe7jhtbf9rxxi3kgy4tboh",
+      "createdBy":"",
+      "modifiedBy":"",
+      "type":"card",
+      "fields":{
+         "icon":"",
+         "properties":{
+            "azr3oh9ko8hc5yfsmapchkpmp4x":"aqr5d3xx3wnpsr56cz3cr8ytwr1"
+         },
+         "contentOrder":[
+            
+         ],
+         "isTemplate":false
+      },
+      "title":"Middle age incident",
+      "createAt":1655490127065,
+      "updateAt":1655490127065,
+      "deleteAt":0,
+      "limited":false
+   },
+   {
+      "id":"75rgsaosis1s68znmh9yjqpjht3",
+      "schema":1,
+      "workspaceId":"",
+      "parentId":"busrqbe7jhtbf9rxxi3kgy4tboh",
+      "rootId":"busrqbe7jhtbf9rxxi3kgy4tboh",
+      "createdBy":"",
+      "modifiedBy":"",
+      "type":"card",
+      "fields":{
+         "icon":"",
+         "properties":{
+            "azr3oh9ko8hc5yfsmapchkpmp4x":"aqr5d3xx3wnpsr56cz3cr8ytwr2"
+         },
+         "contentOrder":[
+            
+         ],
+         "isTemplate":false
+      },
+      "title":"Old Incident",
+      "createAt":1655490127065,
+      "updateAt":1655490127065,
+      "deleteAt":0,
+      "limited":false
+   }
+]
+
+========================
+========================
+GET all playbook runs by playbook id
+http://{{url}}/plugins/playbooks/api/v0/runs?playbook_id={{playbook id}}
+note: can also just get all playbook runs by leaving off the query at the end
+
+{
+    "total_count": 1,
+    "page_count": 1,
+    "has_more": false,
+    "items": [
+        {
+            "id": "esnu6yywsbfs9qxmwyzy4pw91a",
+            "name": "Incident: 0001 Customer DB Offline",
+            "summary": "**Summary**\n\n**Customer impact**\n\n**About**\n- Severity: #sev-1/2/3\n- Responders:\n- ETA to resolution:",
+            "owner_user_id": "f3hjkntdjp8k9pduzeqbdiof8a",
+            "reporter_user_id": "f3hjkntdjp8k9pduzeqbdiof8a",
+            "team_id": "gf9e9geiupradckbb14rs1qh5e",
+            "channel_id": "a4pm8d91atbmfpg1hqnzj89f8r",
+            "create_at": 1655492574995,
+            "end_at": 0,
+            "delete_at": 0,
+            "active_stage": 0,
+            "active_stage_title": "",
+            "post_id": "",
+            "playbook_id": "zuap1katijgpmr51adht1r5x9e",
+            "checklists": [
+                {
+                    "id": "6bt7dd1gnbdcbemz1grem7ms7e",
+                    "title": "Setup for triage",
+                    "items": [
+                        {
+                            "id": "ru1hnoid3pnxjpoh7o1b8g3fzo",
+                            "title": "Add on-call engineer to channel",
+                            "state": "",
+                            "state_modified": 0,
+                            "assignee_id": "",
+                            "assignee_modified": 0,
+                            "command": "",
+                            "command_last_run": 0,
+                            "description": "",
+                            "delete_at": 0,
+                            "due_date": 0
+                        },
+                        {
+                            "id": "ktd4qyday7r8fcpmrx3hnkbqgo",
+                            "title": "Start bridge call",
+                            "state": "",
+                            "state_modified": 0,
+                            "assignee_id": "",
+                            "assignee_modified": 0,
+                            "command": "/zoom start",
+                            "command_last_run": 0,
+                            "description": "",
+                            "delete_at": 0,
+                            "due_date": 0
+                        },
+                        {
+                            "id": "kq76ykitd7dh9rwt6rushx8qye",
+                            "title": "Update description with current situation",
+                            "state": "",
+                            "state_modified": 0,
+                            "assignee_id": "",
+                            "assignee_modified": 0,
+                            "command": "",
+                            "command_last_run": 0,
+                            "description": "",
+                            "delete_at": 0,
+                            "due_date": 0
+                        },
+                        {
+                            "id": "574u8mk9ptndbrkdrebeicgnmw",
+                            "title": "Create an incident ticket",
+                            "state": "",
+                            "state_modified": 0,
+                            "assignee_id": "",
+                            "assignee_modified": 0,
+                            "command": "/jira create",
+                            "command_last_run": 0,
+                            "description": "",
+                            "delete_at": 0,
+                            "due_date": 0
+                        },
+                        {
+                            "id": "mgmeyr5g3jfwtdt7xf5guydroo",
+                            "title": "Assign severity in description (ie. #sev-2)",
+                            "state": "",
+                            "state_modified": 0,
+                            "assignee_id": "",
+                            "assignee_modified": 0,
+                            "command": "",
+                            "command_last_run": 0,
+                            "description": "",
+                            "delete_at": 0,
+                            "due_date": 0
+                        },
+                        {
+                            "id": "381k1u9u5tb4tbo3kfuw69jnow",
+                            "title": "(If #sev-1) Notify @vip",
+                            "state": "",
+                            "state_modified": 0,
+                            "assignee_id": "",
+                            "assignee_modified": 0,
+                            "command": "",
+                            "command_last_run": 0,
+                            "description": "",
+                            "delete_at": 0,
+                            "due_date": 0
+                        }
+                    ]
+                },
+                {
+                    "id": "f97uxfi9ntbwzxxxpm8kw3476c",
+                    "title": "Investigate cause",
+                    "items": [
+                        {
+                            "id": "9iftkmhsm3dcpky53rsrp3r8hy",
+                            "title": "Add suspected causes here and check off if eliminated",
+                            "state": "",
+                            "state_modified": 0,
+                            "assignee_id": "",
+                            "assignee_modified": 0,
+                            "command": "",
+                            "command_last_run": 0,
+                            "description": "",
+                            "delete_at": 0,
+                            "due_date": 0
+                        }
+                    ]
+                },
+                {
+                    "id": "kyj5nae4sf8r8mdap1ibu7we6y",
+                    "title": "Resolution",
+                    "items": [
+                        {
+                            "id": "jkyik1a1mjdnbqswartzh69hgo",
+                            "title": "Confirm issue has been resolved",
+                            "state": "",
+                            "state_modified": 0,
+                            "assignee_id": "",
+                            "assignee_modified": 0,
+                            "command": "",
+                            "command_last_run": 0,
+                            "description": "",
+                            "delete_at": 0,
+                            "due_date": 0
+                        },
+                        {
+                            "id": "tjirsomi6t8jtp9wgqx56wtc1c",
+                            "title": "Notify customer success managers",
+                            "state": "",
+                            "state_modified": 0,
+                            "assignee_id": "",
+                            "assignee_modified": 0,
+                            "command": "",
+                            "command_last_run": 0,
+                            "description": "",
+                            "delete_at": 0,
+                            "due_date": 0
+                        },
+                        {
+                            "id": "gydeqqrpg7f5bmiix3eep9zxkw",
+                            "title": "(If sev-1) Notify leader team",
+                            "state": "",
+                            "state_modified": 0,
+                            "assignee_id": "",
+                            "assignee_modified": 0,
+                            "command": "",
+                            "command_last_run": 0,
+                            "description": "",
+                            "delete_at": 0,
+                            "due_date": 0
+                        }
+                    ]
+                },
+                {
+                    "id": "mwty33f85brffqzqo59mnujxne",
+                    "title": "Retrospective",
+                    "items": [
+                        {
+                            "id": "jayj76g75ig6jrk6yyofyskg9c",
+                            "title": "Send out survey to participants",
+                            "state": "",
+                            "state_modified": 0,
+                            "assignee_id": "",
+                            "assignee_modified": 0,
+                            "command": "",
+                            "command_last_run": 0,
+                            "description": "",
+                            "delete_at": 0,
+                            "due_date": 0
+                        },
+                        {
+                            "id": "nqh5e3uzqibrzqq9a9cdzeycta",
+                            "title": "Schedule post-mortem meeting",
+                            "state": "",
+                            "state_modified": 0,
+                            "assignee_id": "",
+                            "assignee_modified": 0,
+                            "command": "",
+                            "command_last_run": 0,
+                            "description": "",
+                            "delete_at": 0,
+                            "due_date": 0
+                        },
+                        {
+                            "id": "8fykae4cp3g9de4pc46fnu7jga",
+                            "title": "Save key messages as timeline entries",
+                            "state": "",
+                            "state_modified": 0,
+                            "assignee_id": "",
+                            "assignee_modified": 0,
+                            "command": "",
+                            "command_last_run": 0,
+                            "description": "",
+                            "delete_at": 0,
+                            "due_date": 0
+                        },
+                        {
+                            "id": "chusc6z8kpdcirxk9nho8aitaw",
+                            "title": "Publish retrospective report",
+                            "state": "",
+                            "state_modified": 0,
+                            "assignee_id": "",
+                            "assignee_modified": 0,
+                            "command": "",
+                            "command_last_run": 0,
+                            "description": "",
+                            "delete_at": 0,
+                            "due_date": 0
+                        }
+                    ]
+                }
+            ],
+            "status_posts": [],
+            "current_status": "InProgress",
+            "last_status_update_at": 1655492574995,
+            "reminder_post_id": "",
+            "previous_reminder": 3600000000000,
+            "reminder_message_template": "",
+            "reminder_timer_default_seconds": 3600,
+            "status_update_enabled": true,
+            "invited_user_ids": [],
+            "invited_group_ids": [],
+            "timeline_events": [
+                {
+                    "id": "q61nm38j5jbj3emni6cfygaeze",
+                    "playbook_run_id": "esnu6yywsbfs9qxmwyzy4pw91a",
+                    "create_at": 1655492574995,
+                    "delete_at": 0,
+                    "event_at": 1655492574995,
+                    "event_type": "incident_created",
+                    "summary": "",
+                    "details": "",
+                    "post_id": "",
+                    "subject_user_id": "f3hjkntdjp8k9pduzeqbdiof8a",
+                    "creator_user_id": ""
+                },
+                {
+                    "id": "oawmmwutuj8yjmotgydudg7c7o",
+                    "playbook_run_id": "esnu6yywsbfs9qxmwyzy4pw91a",
+                    "create_at": 1655492575227,
+                    "delete_at": 0,
+                    "event_at": 1655492575227,
+                    "event_type": "user_joined_left",
+                    "summary": "@playbooks joined ~incident-0001-customer-db-offline",
+                    "details": "{\"action\": \"joined\", \"title\": \"@playbooks joined the channel\"}",
+                    "post_id": "",
+                    "subject_user_id": "jff5nybsobbiukprs736s4tpna",
+                    "creator_user_id": ""
+                },
+                {
+                    "id": "wr89c9ardtgw8xiofpk3orrhho",
+                    "playbook_run_id": "esnu6yywsbfs9qxmwyzy4pw91a",
+                    "create_at": 1655492575281,
+                    "delete_at": 0,
+                    "event_at": 1655492575281,
+                    "event_type": "user_joined_left",
+                    "summary": "@playbooks added @wayne to ~incident-0001-customer-db-offline",
+                    "details": "{\"action\": \"joined\", \"title\": \"@wayne joined the channel\"}",
+                    "post_id": "",
+                    "subject_user_id": "f3hjkntdjp8k9pduzeqbdiof8a",
+                    "creator_user_id": "jff5nybsobbiukprs736s4tpna"
+                }
+            ],
+            "default_owner_id": "",
+            "broadcast_channel_ids": [],
+            "webhook_on_creation_urls": [],
+            "webhook_on_status_update_urls": [],
+            "status_update_broadcast_channels_enabled": true,
+            "status_update_broadcast_webhooks_enabled": true,
+            "retrospective": "### Summary\nThis should contain 2-3 sentences that give a reader an overview of what happened, what was the cause, and what was done. The briefer the better as this is what future teams will look at first for reference.\n\n### What was the impact?\nThis section describes the impact of this playbook run as experienced by internal and external customers as well as stakeholders.\n\n### What were the contributing factors?\nThis playbook may be a reactive protocol to a situation that is otherwise undesirable. If that's the case, this section explains the reasons that caused the situation in the first place. There may be multiple root causes - this helps stakeholders understand why.\n\n### What was done?\nThis section tells the story of how the team collaborated throughout the event to achieve the outcome. This will help future teams learn from this experience on what they could try.\n\n### What did we learn?\nThis section should include perspective from everyone that was involved to celebrate the victories and identify areas for improvement. For example: What went well? What didn't go well? What should be done differently next time?\n\n### Follow-up tasks\nThis section lists the action items to turn learnings into changes that help the team become more proficient with iterations. It could include tweaking the playbook, publishing the retrospective, or other improvements. The best follow-ups will have a clear owner assigned as well as due date.\n\n### Timeline highlights\nThis section is a curated log that details the most important moments. It can contain key communications, screen shots, or other artifacts. Use the built-in timeline feature to help you retrace and replay the sequence of events.",
+            "retrospective_published_at": 0,
+            "retrospective_was_canceled": false,
+            "retrospective_reminder_interval_seconds": 86400,
+            "retrospective_enabled": true,
+            "message_on_join": "",
+            "participant_ids": [
+                "f3hjkntdjp8k9pduzeqbdiof8a"
+            ],
+            "category_name": "",
+            "metrics_data": []
+        }
+    ]
+}
