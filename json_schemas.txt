@@ -638,9 +638,9 @@ note: still need to figure out how to set properties to visible
            
         ],
         "visiblePropertyIds":[
-          ["atnyyd3tjjthgagdeg6w67wwwww"],
-          ["a4ed4sjky9wnr516fqbahdwwwww"],
-          ["arp5iu3j7gqw9hro3e9yp8wwwww"]
+          "atnyyd3tjjthgagdeg6w67wwwww",
+          "a4ed4sjky9wnr516fqbahdwwwww",
+          "arp5iu3j7gqw9hro3e9yp8wwwww"
         ],
         "visibleOptionIds":[
            
