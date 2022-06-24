@@ -5,15 +5,15 @@ Steps...
 Boards
 
 1. Create channel
-2. Create board from channel - This creates the workspace
+2. Create board from channel - This creates the workspace (that's not how this works, workspace is created when channel is created)
 3. Create board - This creates 2 blocks and 1 card under the new workspace:
    a. board block
-   I. Properties are created under this block and assigned to all cards
-   i. Owner
-   ii. URL of channel
-   iii. Status if overdue or current
+      I. Properties are created under this block and assigned to all cards
+         i. Owner
+         ii. URL of channel
+         iii. Status if overdue or current
    b. view block
-   I. Visible properties are defined under this block
+      I. Visible properties are defined under this block
    c. groups card
 
 - A template is a block assigned to a single workspace.
