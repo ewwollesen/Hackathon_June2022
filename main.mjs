@@ -28,14 +28,21 @@ app.listen(port, () => {
 //TODO : Class/Mod later
 import fetch from 'node-fetch';
 function fetchBoards() {
-  const options = {
-    method: 'GET',
-    headers: {
-      Authorization: 'Bearer ' + process.env.personalAccessToken,
-      'X-Requested-With': 'XMLHttpRequest'
-    }
-  };
-  fetch(process.env.MMURL + 'plugins/focalboard/api/v1/workspaces', options)
-    .then((res) => res.text())
-    .then((resText) => console.log(resText));
+    const options = {
+        method: 'GET',
+        headers: {
+            Authorization: 'Bearer ' + process.env.personalAccessToken,
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    };
+
+    console.log('========================================');
+    console.log(options);
+    console.log('========================================');
+
+    fetch(process.env.MMURL + 'plugins/focalboard/api/v1/workspaces', options)
+        .then(res => { 
+            return res.find(workspace => workspace.title === process.env.channelTitle)  
+        })
+        .then(workspace => console.log(workspace));
 }
