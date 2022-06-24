@@ -120,8 +120,7 @@ note: we could probably add this to the create board call above to create them a
    "updatedFields":{
       "cardProperties":[
          {
-            "id":"azr3oh9ko8hc5yfsmapchkpmp4x",
-                  b2d46dca936942a081c7d8b5e2e62041
+            "id":"azr3oh9ko8hc5yfsmapchkpmp4x", 
             "name":"Status",
             "type":"select",
             "options":[
@@ -156,18 +155,18 @@ http://{{url}}/plugins/focalboard/api/v1/workspaces/{{workspace id}}/blocks
 
 [
    {
-      "id":"75rgsaosis1s68znmh9yjqpjht1",
+      "id":"75rgsaosis1s68znmh9yjqpjht1", //card ID
       "schema":1,
       "workspaceId":"",
-      "parentId":"busrqbe7jhtbf9rxxi3kgy4tboh", //??
-      "rootId":"busrqbe7jhtbf9rxxi3kgy4tboh", //??
+      "parentId":"busrqbe7jhtbf9rxxi3kgy4tboh", //board block ID
+      "rootId":"busrqbe7jhtbf9rxxi3kgy4tboh", //board block ID
       "createdBy":"",
       "modifiedBy":"",
       "type":"card",
       "fields":{
          "icon":"",
          "properties":{
-            "azr3oh9ko8hc5yfsmapchkpmp4x":"aqr5d3xx3wnpsr56cz3cr8ytwre"//what are this?
+            "azr3oh9ko8hc5yfsmapchkpmp4x":"aqr5d3xx3wnpsr56cz3cr8ytwre"// group card ID:group heading ID
          },
          "contentOrder":[
             
@@ -181,18 +180,18 @@ http://{{url}}/plugins/focalboard/api/v1/workspaces/{{workspace id}}/blocks
       "limited":false
    },
    {
-      "id":"75rgsaosis1s68znmh9yjqpjht2",
+      "id":"75rgsaosis1s68znmh9yjqpjht2", //card ID
       "schema":1,
       "workspaceId":"",
-      "parentId":"busrqbe7jhtbf9rxxi3kgy4tboh",
-      "rootId":"busrqbe7jhtbf9rxxi3kgy4tboh",
+      "parentId":"busrqbe7jhtbf9rxxi3kgy4tboh", //board block ID
+      "rootId":"busrqbe7jhtbf9rxxi3kgy4tboh", //board block ID
       "createdBy":"",
       "modifiedBy":"",
       "type":"card",
       "fields":{
          "icon":"",
          "properties":{
-            "azr3oh9ko8hc5yfsmapchkpmp4x":"aqr5d3xx3wnpsr56cz3cr8ytwr1"
+            "azr3oh9ko8hc5yfsmapchkpmp4x":"aqr5d3xx3wnpsr56cz3cr8ytwr1"// group card ID:group heading ID
          },
          "contentOrder":[
             
@@ -206,18 +205,18 @@ http://{{url}}/plugins/focalboard/api/v1/workspaces/{{workspace id}}/blocks
       "limited":false
    },
    {
-      "id":"75rgsaosis1s68znmh9yjqpjht3",
+      "id":"75rgsaosis1s68znmh9yjqpjht3", //card ID
       "schema":1,
       "workspaceId":"",
-      "parentId":"busrqbe7jhtbf9rxxi3kgy4tboh",
-      "rootId":"busrqbe7jhtbf9rxxi3kgy4tboh",
+      "parentId":"busrqbe7jhtbf9rxxi3kgy4tboh", //board block ID
+      "rootId":"busrqbe7jhtbf9rxxi3kgy4tboh", //board block ID
       "createdBy":"",
       "modifiedBy":"",
       "type":"card",
       "fields":{
          "icon":"",
          "properties":{
-            "azr3oh9ko8hc5yfsmapchkpmp4x":"aqr5d3xx3wnpsr56cz3cr8ytwr2"
+            "azr3oh9ko8hc5yfsmapchkpmp4x":"aqr5d3xx3wnpsr56cz3cr8ytwr2"// group card ID:group heading ID
          },
          "contentOrder":[
             
