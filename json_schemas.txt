@@ -16,140 +16,6 @@ http://{{url}}/plugins/focalboard/api/v1/workspaces
 
 ========================
 ========================
-POST create new board
-http://{{url}}/plugins/focalboard/api/v1/workspaces/{{workspace id}}/blocks
-note: This is an array that creates two blocks. A "board" block and a "view" block.
-
-[
-   {
-      "id":"7zs1f33uoych1c6ucd5t77q4f3x",
-      "schema":1,
-      "workspaceId":"",
-      "parentId":"",
-      "rootId":"7zs1f33uoych1c6ucd5t77q4f3x",
-      "createdBy":"",
-      "modifiedBy":"",
-      "type":"board",
-      "fields":{
-         "showDescription":false,
-         "description":"",
-         "icon":"",
-         "isTemplate":false,
-         "templateVer":0,
-         "columnCalculations":[
-            
-         ],
-         "cardProperties":[
-            {
-               "id":"azr3oh9ko8hc5yfsmapchkpmp4x",
-               "name":"Status",
-               "type":"select",
-               "options":[
-                  
-               ]
-            }
-         ]
-      },
-      "title":"Open Playbooks Dashboard",
-      "createAt":1655409199321,
-      "updateAt":1655409199321,
-      "deleteAt":0,
-      "limited":false
-   },
-   {
-      "id":"735bmk4s7sy31tieei6pgzuxw8x",
-      "schema":1,
-      "workspaceId":"",
-      "parentId":"7zs1f33uoych1c6ucd5t77q4f3x",
-      "rootId":"7zs1f33uoych1c6ucd5t77q4f3x",
-      "createdBy":"",
-      "modifiedBy":"",
-      "type":"view",
-      "fields":{
-         "viewType":"board",
-         "sortOptions":[
-            
-         ],
-         "visiblePropertyIds":[
-            
-         ],
-         "visibleOptionIds":[
-            
-         ],
-         "hiddenOptionIds":[
-            
-         ],
-         "collapsedOptionIds":[
-            
-         ],
-         "filter":{
-            "operation":"and",
-            "filters":[
-               
-            ]
-         },
-         "cardOrder":[
-            
-         ],
-         "columnWidths":{
-            
-         },
-         "columnCalculations":{
-            
-         },
-         "kanbanCalculations":{
-            
-         },
-         "defaultTemplateId":""
-      },
-      "title":"Board view",
-      "createAt":1655409199321,
-      "updateAt":1655409199321,
-      "deleteAt":0,
-      "limited":false
-   }
-]
-
-========================
-========================
-PATCH create groups
-http://{{url}}/plugins/focalboard/api/v1/workspaces/{{workspace id}}/blocks/{{block id}}
-note: we could probably add this to the create board call above to create them at the same time I just haven't tested it yet
-
-{
-   "updatedFields":{
-      "cardProperties":[
-         {
-            "id":"azr3oh9ko8hc5yfsmapchkpmp4x", 
-            "name":"Status",
-            "type":"select",
-            "options":[
-               {
-                  "id":"aqr5d3xx3wnpsr56cz3cr8ytwre",
-                  "value":"> week",
-                  "color":"propColorGreen"
-               },
-               {
-                  "id":"aqr5d3xx3wnpsr56cz3cr8ytwr1",
-                  "value":"1-2 weeks",
-                  "color":"propColorYellow"
-               },
-               {
-                  "id":"aqr5d3xx3wnpsr56cz3cr8ytwr2",
-                  "value":"> 2 weeks",
-                  "color":"propColorRed"
-               }
-            ]
-         }
-      ]
-   },
-   "deletedFields":[
-      
-   ]
-}
-
-========================
-========================
 POST create card
 http://{{url}}/plugins/focalboard/api/v1/workspaces/{{workspace id}}/blocks
 
@@ -166,7 +32,7 @@ http://{{url}}/plugins/focalboard/api/v1/workspaces/{{workspace id}}/blocks
       "fields":{
          "icon":"",
          "properties":{
-            "azr3oh9ko8hc5yfsmapchkpmp4x":"aqr5d3xx3wnpsr56cz3cr8ytwre"// group card ID:group heading ID
+            "azr3oh9ko8hc5yfsmapchkpmp4x":"aqr5d3xx3wnpsr56cz3cr8ytwre"// view block ID ID:group heading ID
          },
          "contentOrder":[
             
@@ -216,7 +82,7 @@ http://{{url}}/plugins/focalboard/api/v1/workspaces/{{workspace id}}/blocks
       "fields":{
          "icon":"",
          "properties":{
-            "azr3oh9ko8hc5yfsmapchkpmp4x":"aqr5d3xx3wnpsr56cz3cr8ytwr2"// group card ID:group heading ID
+            "azr3oh9ko8hc5yfsmapchkpmp4x":"aqr5d3xx3wnpsr56cz3cr8ytwr2"// view card ID:card option ID
          },
          "contentOrder":[
             
