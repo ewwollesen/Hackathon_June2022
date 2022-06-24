@@ -476,7 +476,7 @@ note: still need to figure out how to set properties to visible
             },
             {
                 "id": "arp5iu3j7gqw9hro3e9yp8wwwww", //owner property ID
-                "name": "Person",
+                "name": "Playbook Owner",
                 "options": [],
                 "type": "person"
            }
