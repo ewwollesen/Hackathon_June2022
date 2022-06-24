@@ -1,6 +1,10 @@
 //init
 // moved to ESM const dotenv = require('dotenv');
 import dotenv from 'dotenv';
+import { v4 as uuidv4 } from 'uuid';
+
+const testuid = uuidv4().replaceAll('-', '').substring(0, 26);
+console.log(testuid);
 
 // Load env vars
 dotenv.config({ path: './config/config.env' });
