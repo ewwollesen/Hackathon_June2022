@@ -208,7 +208,7 @@ function createBoard(workspace) {
       Authorization: 'Bearer ' + process.env.personalAccessToken,
       'X-Requested-With': 'XMLHttpRequest'
     },
-    body: JSON.stringify(board)
+    body: JSON.stringify([board])
   };
 
   return fetch(
