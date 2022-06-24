@@ -42,6 +42,9 @@ function fetchBoards() {
 
     fetch(process.env.MMURL + 'plugins/focalboard/api/v1/workspaces', options)
         .then(res => { 
+            console.log('res is', res);
+            console.log(typeof(res));
+            console.log(res.body);
             return res.find(workspace => workspace.title === process.env.channelTitle)  
         })
         .then(workspace => console.log(workspace));
