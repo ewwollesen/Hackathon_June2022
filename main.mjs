@@ -2,9 +2,10 @@
 // moved to ESM const dotenv = require('dotenv');
 import dotenv from 'dotenv';
 import { v4 as uuidv4 } from 'uuid';
+import { eachDayOfInterval } from 'date-fns';
 
-const testuid = uuidv4().replaceAll('-', '').substring(0, 26);
-console.log(testuid);
+// const testuid = uuidv4().replaceAll('-', '').substring(0, 26);
+// console.log(testuid);
 
 // Load env vars
 dotenv.config({ path: './config/config.env' });
@@ -21,7 +22,9 @@ app.use(express.urlencoded()); // to support URL-encoded bodies
 app.post('/', (req, res) => {
   var body = req.body;
   console.log('Received post', body);
-  fetchWorkspace().then((res) => createBoard(res));
+  fetchWorkspace()
+    .then((res) => fetchPlaybookRuns(res))
+    .then((res) => createBoard(res));
   res.sendStatus(200);
 });
 
@@ -131,7 +134,8 @@ function createBoard(workspace) {
     headers: {
       Authorization: 'Bearer ' + process.env.personalAccessToken,
       'X-Requested-With': 'XMLHttpRequest'
-    }
+    },
+    body: board
   };
 
   return fetch(
@@ -145,4 +149,58 @@ function createBoard(workspace) {
     .then((res) => {
       console.log(res);
     });
+}
+
+function fetchPlaybookRuns(workspace) {
+  let cards = [];
+  //<=7
+  let lessThanWeek = [];
+  //>7 && <=14
+  let greaterThanWeekButLessThanTwoWeeks = [];
+  //>14
+  let greaterThanTwoWeeks = [];
+
+  let today = new Date();
+
+  const options = {
+    method: 'GET',
+    headers: {
+      Authorization: 'Bearer ' + process.env.personalAccessToken,
+      'X-Requested-With': 'XMLHttpRequest'
+    }
+  };
+
+  return fetch(
+    process.env.MMURL + 'plugins/playbooks/api/v0/runs?playbook_id=' + process.env.playbookId,
+    options
+  )
+  .then((res) => res.json())
+  .then((res) => {
+    console.log("result of fetchPlaybookRuns", res);
+
+    if (res.total_count > 0) {
+      res.items.forEach(playbookRun => {
+        if (playbookRun.current_status != "") {
+          let durationInDays = eachDayOfInterval({'start': playbookRun.create_at, 'end': today});
+          console.log('duration in days between create_at & now', durationInDays);
+
+          card = new Card(
+            
+          )
+
+          if (durationInDays >= 7) 
+        }
+      })
+    }
+
+    return {
+      'workspace':workspace,
+      'cards':cards
+    }
+  });
+}
+
+
+function returnNewUUID() {
+  return uuidv4().replaceAll('-', '').substring(0, 26);
 }
