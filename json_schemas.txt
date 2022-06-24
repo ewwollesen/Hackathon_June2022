@@ -159,15 +159,15 @@ http://{{url}}/plugins/focalboard/api/v1/workspaces/{{workspace id}}/blocks
       "id":"75rgsaosis1s68znmh9yjqpjht1",
       "schema":1,
       "workspaceId":"",
-      "parentId":"busrqbe7jhtbf9rxxi3kgy4tboh",
-      "rootId":"busrqbe7jhtbf9rxxi3kgy4tboh",
+      "parentId":"busrqbe7jhtbf9rxxi3kgy4tboh", //??
+      "rootId":"busrqbe7jhtbf9rxxi3kgy4tboh", //??
       "createdBy":"",
       "modifiedBy":"",
       "type":"card",
       "fields":{
          "icon":"",
          "properties":{
-            "azr3oh9ko8hc5yfsmapchkpmp4x":"aqr5d3xx3wnpsr56cz3cr8ytwre"
+            "azr3oh9ko8hc5yfsmapchkpmp4x":"aqr5d3xx3wnpsr56cz3cr8ytwre"//what are this?
          },
          "contentOrder":[
             
@@ -546,11 +546,11 @@ note: still need to figure out how to set properties to visible
 
 [
   {
-     "id":"7zs1f33uoych1c6ucd5t77wwwww",
+     "id":"7zs1f33uoych1c6ucd5t77wwwww",  //board block ID
      "schema":1,
      "workspaceId":"",
      "parentId":"",
-     "rootId":"7zs1f33uoych1c6ucd5t77wwwww",
+     "rootId":"7zs1f33uoych1c6ucd5t77wwwww", //board block ID
      "createdBy":"",
      "modifiedBy":"",
      "type":"board",
@@ -565,52 +565,52 @@ note: still need to figure out how to set properties to visible
         ],
         "cardProperties":[
            {
-              "id":"azr3oh9ko8hc5yfsmapchkwwwww",
+              "id":"azr3oh9ko8hc5yfsmapchkwwwww", //View Card ID
               "name":"Status",
               "type":"select",
               "options":[
                 {
-                    "id":"aqr5d3xx3wnpsr56cz3cr8wwwww",
+                    "id":"aqr5d3xx3wnpsr56cz3cr8wwwww", //card option id 1
                     "value":"> week",
                     "color":"propColorGreen"
                 },
                 {
-                    "id":"aqr5d3xx3wnpsr56cz3cr8ccccc",
+                    "id":"aqr5d3xx3wnpsr56cz3cr8ccccc", //card option id 2
                     "value":"1-2 weeks",
                     "color":"propColorYellow"
                 },
                 {
-                    "id":"aqr5d3xx3wnpsr56cz3cr8ddddd",
+                    "id":"aqr5d3xx3wnpsr56cz3cr8ddddd", // card option id 3
                     "value":"> 2 weeks",
                     "color":"propColorRed"
                 }
               ]
            },
            {
-                "id": "atnyyd3tjjthgagdeg6w67wwwww",
+                "id": "atnyyd3tjjthgagdeg6w67wwwww", //select card property ID
                 "name": "Update Status",
                 "type": "select",
                 "options": [
                     {
                         "color": "propColorRed",
-                        "id": "aww3n8n6xramn5c5fn3afmccccc",
+                        "id": "aww3n8n6xramn5c5fn3afmccccc", //overdue select property ID
                         "value": "Overdue"
                     },
                     {
                         "color": "propColorGreen",
-                        "id": "aww3n8n6xramn5c5fn3afmddddd",
+                        "id": "aww3n8n6xramn5c5fn3afmddddd", //current select property ID
                         "value": "Current"
                     }
                 ]               
             },
             {
-                "id": "a4ed4sjky9wnr516fqbahdwwwww",
+                "id": "a4ed4sjky9wnr516fqbahdwwwww", //URL property ID
                 "name": "Channel URL",
                 "options": [],
                 "type": "url"
             },
             {
-                "id": "arp5iu3j7gqw9hro3e9yp8wwwww",
+                "id": "arp5iu3j7gqw9hro3e9yp8wwwww", //owner property ID
                 "name": "Person",
                 "options": [],
                 "type": "person"
@@ -624,11 +624,11 @@ note: still need to figure out how to set properties to visible
      "limited":false
   },
   {
-     "id":"735bmk4s7sy31tieei6pgwwwwwz",
+     "id":"735bmk4s7sy31tieei6pgwwwwwz", //view block ID
      "schema":1,
      "workspaceId":"",
-     "parentId":"7zs1f33uoych1c6ucd5t77wwwww",
-     "rootId":"7zs1f33uoych1c6ucd5t77wwwww",
+     "parentId":"7zs1f33uoych1c6ucd5t77wwwww", //board block id
+     "rootId":"7zs1f33uoych1c6ucd5t77wwwww", //board block id
      "createdBy":"",
      "modifiedBy":"",
      "type":"view",
@@ -638,9 +638,9 @@ note: still need to figure out how to set properties to visible
            
         ],
         "visiblePropertyIds":[
-          "atnyyd3tjjthgagdeg6w67wwwww",
-          "a4ed4sjky9wnr516fqbahdwwwww",
-          "arp5iu3j7gqw9hro3e9yp8wwwww"
+          "atnyyd3tjjthgagdeg6w67wwwww", //select card property ID
+          "a4ed4sjky9wnr516fqbahdwwwww", //url property ID
+          "arp5iu3j7gqw9hro3e9yp8wwwww" //owner property ID
         ],
         "visibleOptionIds":[
            
