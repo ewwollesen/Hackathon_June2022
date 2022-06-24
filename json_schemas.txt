@@ -121,6 +121,7 @@ note: we could probably add this to the create board call above to create them a
       "cardProperties":[
          {
             "id":"azr3oh9ko8hc5yfsmapchkpmp4x",
+                  b2d46dca936942a081c7d8b5e2e62041
             "name":"Status",
             "type":"select",
             "options":[
@@ -536,3 +537,144 @@ note: can also just get all playbook runs by leaving off the query at the end
         }
     ]
 }
+
+========================
+========================
+POST create new board - one giant call to create all steps
+http://{{url}}/plugins/focalboard/api/v1/workspaces/{{workspace id}}/blocks
+note: still need to figure out how to set properties to visible
+
+[
+  {
+     "id":"7zs1f33uoych1c6ucd5t77wwwww",
+     "schema":1,
+     "workspaceId":"",
+     "parentId":"",
+     "rootId":"7zs1f33uoych1c6ucd5t77wwwww",
+     "createdBy":"",
+     "modifiedBy":"",
+     "type":"board",
+     "fields":{
+        "showDescription":false,
+        "description":"",
+        "icon":"",
+        "isTemplate":false,
+        "templateVer":0,
+        "columnCalculations":[
+           
+        ],
+        "cardProperties":[
+           {
+              "id":"azr3oh9ko8hc5yfsmapchkwwwww",
+              "name":"Status",
+              "type":"select",
+              "options":[
+                {
+                    "id":"aqr5d3xx3wnpsr56cz3cr8wwwww",
+                    "value":"> week",
+                    "color":"propColorGreen"
+                },
+                {
+                    "id":"aqr5d3xx3wnpsr56cz3cr8ccccc",
+                    "value":"1-2 weeks",
+                    "color":"propColorYellow"
+                },
+                {
+                    "id":"aqr5d3xx3wnpsr56cz3cr8ddddd",
+                    "value":"> 2 weeks",
+                    "color":"propColorRed"
+                }
+              ]
+           },
+           {
+                "id": "atnyyd3tjjthgagdeg6w67wwwww",
+                "name": "Update Status",
+                "type": "select",
+                "options": [
+                    {
+                        "color": "propColorRed",
+                        "id": "aww3n8n6xramn5c5fn3afmccccc",
+                        "value": "Overdue"
+                    },
+                    {
+                        "color": "propColorGreen",
+                        "id": "aww3n8n6xramn5c5fn3afmddddd",
+                        "value": "Current"
+                    }
+                ]               
+            },
+            {
+                "id": "a4ed4sjky9wnr516fqbahdwwwww",
+                "name": "Channel URL",
+                "options": [],
+                "type": "url"
+            },
+            {
+                "id": "arp5iu3j7gqw9hro3e9yp8wwwww",
+                "name": "Person",
+                "options": [],
+                "type": "person"
+           }
+        ]
+     },
+     "title":"Open Playbooks Dashboard V4",
+     "createAt":1655409199321,
+     "updateAt":1655409199321,
+     "deleteAt":0,
+     "limited":false
+  },
+  {
+     "id":"735bmk4s7sy31tieei6pgwwwwwz",
+     "schema":1,
+     "workspaceId":"",
+     "parentId":"7zs1f33uoych1c6ucd5t77wwwww",
+     "rootId":"7zs1f33uoych1c6ucd5t77wwwww",
+     "createdBy":"",
+     "modifiedBy":"",
+     "type":"view",
+     "fields":{
+        "viewType":"board",
+        "sortOptions":[
+           
+        ],
+        "visiblePropertyIds":[
+          ["atnyyd3tjjthgagdeg6w67wwwww"],
+          ["a4ed4sjky9wnr516fqbahdwwwww"],
+          ["arp5iu3j7gqw9hro3e9yp8wwwww"]
+        ],
+        "visibleOptionIds":[
+           
+        ],
+        "hiddenOptionIds":[
+           ""
+        ],
+        "collapsedOptionIds":[
+           
+        ],
+        "filter":{
+           "operation":"and",
+           "filters":[
+              
+           ]
+        },
+        "cardOrder":[
+           
+        ],
+        "columnWidths":{
+           
+        },
+        "columnCalculations":{
+           
+        },
+        "kanbanCalculations":{
+           
+        },
+        "defaultTemplateId":""
+     },
+     "title":"Board view",
+     "createAt":1655409199321,
+     "updateAt":1655409199321,
+     "deleteAt":0,
+     "limited":false
+  }
+]
