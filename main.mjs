@@ -22,6 +22,7 @@ class Board {
     const channelURLId = returnNewUUID();
     const ownerPlaybookId = returnNewUUID();
     const viewBoardId = returnNewUUID();
+
     this.ids = {
       "boardId": boardId,
       "viewBlockId" : viewBlockId,
@@ -35,6 +36,8 @@ class Board {
       "ownerPlaybookId" : ownerPlaybookId,
       "viewBoardId" :viewBoardId
     };
+
+    console.log("my generated ids", this.ids);
 
     this.id = this.ids.boardId;
     this.schema = 1;
