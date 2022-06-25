@@ -11,17 +11,17 @@ import { eachDayOfInterval } from 'date-fns';
 //TODO : Classes file
 class Board {
   constructor(boardTitle) {
-    boardId = returnNewUUID();
-    viewBlockId = returnNewUUID();
-    viewCardLT7DaysId = returnNewUUID();
-    viewCardLT14DaysId = returnNewUUID();
-    viewCardGT14DaysId = returnNewUUID();
-    selectCardPropertyId = returnNewUUID();
-    selectCardOverdueId = returnNewUUID();
-    selectCardCurrentId = returnNewUUID();
-    channelURLId = returnNewUUID();
-    ownerPlaybookId = returnNewUUID();
-    viewBoardId = returnNewUUID();
+    const boardId = returnNewUUID();
+    const viewBlockId = returnNewUUID();
+    const viewCardLT7DaysId = returnNewUUID();
+    const viewCardLT14DaysId = returnNewUUID();
+    const viewCardGT14DaysId = returnNewUUID();
+    const selectCardPropertyId = returnNewUUID();
+    const selectCardOverdueId = returnNewUUID();
+    const selectCardCurrentId = returnNewUUID();
+    const channelURLId = returnNewUUID();
+    const ownerPlaybookId = returnNewUUID();
+    const viewBoardId = returnNewUUID();
     this.ids = {
       "boardId": boardId,
       "viewBlockId" : viewBlockId,
