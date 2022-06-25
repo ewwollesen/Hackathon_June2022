@@ -349,7 +349,7 @@ function createCards(state) {
       Authorization: 'Bearer ' + process.env.personalAccessToken,
       'X-Requested-With': 'XMLHttpRequest'
     },
-    body: JSON.stringify([state.cards])
+    body: JSON.stringify(state.cards)
   };
 
   return fetch(
