@@ -42,6 +42,26 @@ class Board {
   }
 }
 
+class ViewBoard {
+  constructor(ids) {
+
+    this.id = ids.viewBoardId;
+    this.schema = 1;
+    this.workspaceId = "";
+    this.parentId = this.ids.boardId; 
+    this.rootId = this.ids.boardId; 
+    this.createdBy="";
+    this.modifiedBy="";
+    this.type="board";
+    this.fields = new ViewBoardFields(this.ids);
+    this.title = "Board View";
+    this.createAt = Date.now();
+    this.updateAt = Date.now();
+    this.deleteAt = 0;
+    this.limited = false
+  }
+}
+
 class BoardFields {
   constructor(ids) {
     this.showDescription=false;
@@ -103,6 +123,30 @@ class BoardFields {
           "type": "person"
       }
     ]
+  }
+}
+
+class ViewBoardFields {
+  constructor(ids) {
+      this.viewType="board";
+      this.sortOptions=[];
+      this.visiblePropertyIds=[
+        ids.selectCardPropertyId, //select card property ID
+        ids.channelURLId, //url property ID
+        ids.ownerPlaybookId //owner property ID
+      ];
+      this.visibleOptionIds=[];
+      this.hiddenOptionIds=[""];
+      this.collapsedOptionIds=[];
+      this.filter={
+         "operation":"and",
+         "filters":[]
+      };
+      this.cardOrder=[];
+      this.columnWidths={}
+      this.columnCalculations={};
+      this.kanbanCalculations={};
+      this.defaultTemplateId="";
   }
 }
 
@@ -203,7 +247,8 @@ function fetchWorkspace() {
 }
 
 function createBoard(workspace) {
-  let board = new Board(process.env.channelTitle) // board title
+  let board = new Board(process.env.channelTitle); // board title
+  let viewBoard = new ViewBoard(board.ids);
 
   const options = {
     method: 'POST',
@@ -211,7 +256,7 @@ function createBoard(workspace) {
       Authorization: 'Bearer ' + process.env.personalAccessToken,
       'X-Requested-With': 'XMLHttpRequest'
     },
-    body: JSON.stringify([board])
+    body: JSON.stringify([board, viewBoard])
   };
 
   return fetch(
