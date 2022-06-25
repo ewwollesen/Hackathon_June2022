@@ -151,6 +151,9 @@ class ViewBoardFields {
 
 class Card {
   constructor(boardId, viewBlockId, viewCardId, title) {
+    let fieldProperties = {}
+    fieldProperties[viewBlockId] = viewCardId
+
     this.id = returnNewUUID();
     this.schema = 1;
     this.workspaceId = '';
@@ -161,9 +164,7 @@ class Card {
     this.type = 'card';
     this.fields = {
       icon: '',
-      properties: {
-        viewBlockId: viewCardId
-      },
+      properties: fieldProperties,
       contentOrder: [],
       isTemplate: false
     };
@@ -332,6 +333,9 @@ function fetchPlaybookRuns(state) {
                 playbookRun.name
               )
             );
+
+            
+            console.log("Cards =======", cards);
           }
         });
       }
