@@ -11,18 +11,29 @@ import { eachDayOfInterval } from 'date-fns';
 //TODO : Classes file
 class Board {
   constructor(boardTitle) {
+    boardId = returnNewUUID();
+    viewBlockId = returnNewUUID();
+    viewCardLT7DaysId = returnNewUUID();
+    viewCardLT14DaysId = returnNewUUID();
+    viewCardGT14DaysId = returnNewUUID();
+    selectCardPropertyId = returnNewUUID();
+    selectCardOverdueId = returnNewUUID();
+    selectCardCurrentId = returnNewUUID();
+    channelURLId = returnNewUUID();
+    ownerPlaybookId = returnNewUUID();
+    viewBoardId = returnNewUUID();
     this.ids = {
-      boardId: returnNewUUID(),
-      viewBlockId: returnNewUUID(),
-      viewCardLT7DaysId: returnNewUUID(),
-      viewCardLT14DaysId: returnNewUUID(),
-      viewCardGT14DaysId: returnNewUUID(),
-      selectCardPropertyId: returnNewUUID(),
-      selectCardOverdueId: returnNewUUID(),
-      selectCardCurrentId: returnNewUUID(),
-      channelURLId: returnNewUUID(),
-      ownerPlaybookId: returnNewUUID(),
-      viewBoardId: returnNewUUID()
+      "boardId": boardId,
+      "viewBlockId" : viewBlockId,
+      "viewCardLT7DaysId" : viewCardLT7DaysId,
+      "viewCardLT14DaysId" : viewCardLT14DaysId,
+      "viewCardGT14DaysId" : viewCardGT14DaysId,
+      "selectCardPropertyId" : selectCardPropertyId,
+      "selectCardOverdueId" : selectCardOverdueId,
+      "selectCardCurrentId" : selectCardCurrentId,
+      "channelURLId" : channelURLId,
+      "ownerPlaybookId" : ownerPlaybookId,
+      "viewBoardId" :viewBoardId
     };
 
     this.id = this.ids.boardId;
@@ -152,7 +163,8 @@ class ViewBoardFields {
 class Card {
   constructor(boardId, viewBlockId, viewCardId, title) {
     let fieldProperties = {}
-    fieldProperties[viewBlockId] = viewCardId
+    fieldProperties[viewBlockId] = viewCardId;
+    console.log('fieldProperties', fieldProperties);
 
     this.id = returnNewUUID();
     this.schema = 1;
@@ -333,9 +345,6 @@ function fetchPlaybookRuns(state) {
                 playbookRun.name
               )
             );
-
-            
-            console.log("Cards =======", cards);
           }
         });
       }
