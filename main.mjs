@@ -354,7 +354,7 @@ function createCards(state) {
 
   return fetch(
     process.env.MMURL +
-      'plugins/focalboard/api/v1/workspaces/' + workspace.id + '/blocks',
+      'plugins/focalboard/api/v1/workspaces/' + state.workspace.id + '/blocks',
     options
   )
     .then((res) => res.json())
