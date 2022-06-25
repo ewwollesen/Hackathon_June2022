@@ -48,12 +48,12 @@ class ViewBoard {
     this.id = ids.viewBoardId;
     this.schema = 1;
     this.workspaceId = "";
-    this.parentId = this.ids.boardId; 
-    this.rootId = this.ids.boardId; 
+    this.parentId = ids.boardId; 
+    this.rootId = ids.boardId; 
     this.createdBy="";
     this.modifiedBy="";
     this.type="board";
-    this.fields = new ViewBoardFields(this.ids);
+    this.fields = new ViewBoardFields(ids);
     this.title = "Board View";
     this.createAt = Date.now();
     this.updateAt = Date.now();
