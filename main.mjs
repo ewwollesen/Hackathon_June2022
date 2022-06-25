@@ -12,141 +12,140 @@ import { eachDayOfInterval } from 'date-fns';
 class Board {
   constructor(boardTitle) {
     this.ids = {
-      "boardId" : returnNewUUID(),
-      "viewBlockId" : returnNewUUID(),
-      "viewCardLT7DaysId" : returnNewUUID(),
-      "viewCardLT14DaysId" : returnNewUUID(),
-      "viewCardGT14DaysId" : returnNewUUID(),
-      "selectCardPropertyId" : returnNewUUID(),
-      "selectCardOverdueId" : returnNewUUID(),
-      "selectCardCurrentId" : returnNewUUID(),
-      "channelURLId" : returnNewUUID(),
-      "ownerPlaybookId" : returnNewUUID(),
-      "viewBoardId" : returnNewUUID(),
-    }
+      boardId: returnNewUUID(),
+      viewBlockId: returnNewUUID(),
+      viewCardLT7DaysId: returnNewUUID(),
+      viewCardLT14DaysId: returnNewUUID(),
+      viewCardGT14DaysId: returnNewUUID(),
+      selectCardPropertyId: returnNewUUID(),
+      selectCardOverdueId: returnNewUUID(),
+      selectCardCurrentId: returnNewUUID(),
+      channelURLId: returnNewUUID(),
+      ownerPlaybookId: returnNewUUID(),
+      viewBoardId: returnNewUUID()
+    };
 
     this.id = this.ids.boardId;
     this.schema = 1;
-    this.workspaceId="";
-    this.parentId="";
-    this.rootId = this.ids.boardId; 
-    this.createdBy="";
-    this.modifiedBy="";
-    this.type="board";
+    this.workspaceId = '';
+    this.parentId = '';
+    this.rootId = this.ids.boardId;
+    this.createdBy = '';
+    this.modifiedBy = '';
+    this.type = 'board';
     this.fields = new BoardFields(this.ids);
     this.title = boardTitle;
     this.createAt = Date.now();
     this.updateAt = Date.now();
     this.deleteAt = 0;
-    this.limited = false
+    this.limited = false;
   }
 }
 
 class ViewBoard {
   constructor(ids) {
-
     this.id = ids.viewBoardId;
     this.schema = 1;
-    this.workspaceId = "";
-    this.parentId = ids.boardId; 
-    this.rootId = ids.boardId; 
-    this.createdBy="";
-    this.modifiedBy="";
-    this.type="board";
+    this.workspaceId = '';
+    this.parentId = ids.boardId;
+    this.rootId = ids.boardId;
+    this.createdBy = '';
+    this.modifiedBy = '';
+    this.type = 'view';
     this.fields = new ViewBoardFields(ids);
-    this.title = "Board View";
+    this.title = 'Board View';
     this.createAt = Date.now();
     this.updateAt = Date.now();
     this.deleteAt = 0;
-    this.limited = false
+    this.limited = false;
   }
 }
 
 class BoardFields {
   constructor(ids) {
-    this.showDescription=false;
-    this.description="";
-    this.icon="";
-    this.isTemplate=false;
-    this.templateVer=0;
-    this.columnCalculations =[];
-    this.cardProperties=[
+    this.showDescription = false;
+    this.description = '';
+    this.icon = '';
+    this.isTemplate = false;
+    this.templateVer = 0;
+    this.columnCalculations = [];
+    this.cardProperties = [
       {
-        "id" : ids.viewBlockId, 
-        "name":"Status",
-        "type":"select",
-        "options":[
+        id: ids.viewBlockId,
+        name: 'Status',
+        type: 'select',
+        options: [
           {
-              "id" : ids.viewCardLT7DaysId, 
-              "value":"> week",
-              "color":"propColorGreen"
+            id: ids.viewCardLT7DaysId,
+            value: '> week',
+            color: 'propColorGreen'
           },
           {
-              "id" : ids.viewCardLT14DaysId, //card option id 2
-              "value":"1-2 weeks",
-              "color":"propColorYellow"
+            id: ids.viewCardLT14DaysId, //card option id 2
+            value: '1-2 weeks',
+            color: 'propColorYellow'
           },
           {
-              "id" : ids.viewCardGT14DaysId, // card option id 3
-              "value":"> 2 weeks",
-              "color":"propColorRed"
+            id: ids.viewCardGT14DaysId, // card option id 3
+            value: '> 2 weeks',
+            color: 'propColorRed'
           }
         ]
       },
       {
-          "id" : ids.selectCardPropertyId, //select card property ID
-          "name": "Update Status",
-          "type": "select",
-          "options": [
-              {
-                  "color": "propColorRed",
-                  "id" : ids.selectCardOverdueId, //overdue select property ID
-                  "value": "Overdue"
-              },
-              {
-                  "color": "propColorGreen",
-                  "id" : ids.selectCardCurrentId, //current select property ID
-                  "value": "Current"
-              }
-          ]               
+        id: ids.selectCardPropertyId, //select card property ID
+        name: 'Update Status',
+        type: 'select',
+        options: [
+          {
+            color: 'propColorRed',
+            id: ids.selectCardOverdueId, //overdue select property ID
+            value: 'Overdue'
+          },
+          {
+            color: 'propColorGreen',
+            id: ids.selectCardCurrentId, //current select property ID
+            value: 'Current'
+          }
+        ]
       },
       {
-          "id" : ids.channelURLId, //URL property ID
-          "name": "Channel URL",
-          "options": [],
-          "type": "url"
+        id: ids.channelURLId, //URL property ID
+        name: 'Channel URL',
+        options: [],
+        type: 'url'
       },
       {
-          "id" : ids.ownerPlaybookId, //owner property ID
-          "name": "Person",
-          "options": [],
-          "type": "person"
+        id: ids.ownerPlaybookId, //owner property ID
+        name: 'Person',
+        options: [],
+        type: 'person'
       }
-    ]
+    ];
   }
 }
 
 class ViewBoardFields {
   constructor(ids) {
-      this.viewType="board";
-      this.sortOptions=[];
-      this.visiblePropertyIds=[
-        ids.selectCardPropertyId, //select card property ID
-        ids.channelURLId, //url property ID
-        ids.ownerPlaybookId //owner property ID
-      ];
-      this.visibleOptionIds=[];
-      this.hiddenOptionIds=[""];
-      this.collapsedOptionIds=[];
-      this.filter={
-         "operation":"and",
-         "filters":[]
-      };
-      this.cardOrder=[];
-      this.columnWidths={}
-      this.columnCalculations={};
-      this.kanbanCalculations={};
-      this.defaultTemplateId="";
+    this.viewType = 'board';
+    this.sortOptions = [];
+    this.visiblePropertyIds = [
+      ids.selectCardPropertyId, //select card property ID
+      ids.channelURLId, //url property ID
+      ids.ownerPlaybookId //owner property ID
+    ];
+    this.visibleOptionIds = [];
+    this.hiddenOptionIds = [''];
+    this.collapsedOptionIds = [];
+    this.filter = {
+      operation: 'and',
+      filters: []
+    };
+    this.cardOrder = [];
+    this.columnWidths = {};
+    this.columnCalculations = {};
+    this.kanbanCalculations = {};
+    this.defaultTemplateId = '';
   }
 }
 
@@ -154,32 +153,32 @@ class Card {
   constructor(boardId, viewBlockId, viewCardId, title) {
     this.id = returnNewUUID();
     this.schema = 1;
-    this.workspaceId="";
-    this.parentId=boardId;
-    this.rootId=boardId; 
-    this.createdBy="";
-    this.modifiedBy="";
-    this.type="card";
+    this.workspaceId = '';
+    this.parentId = boardId;
+    this.rootId = boardId;
+    this.createdBy = '';
+    this.modifiedBy = '';
+    this.type = 'card';
     this.fields = {
-      "icon":"",
-      "properties":{
-        groupCardId:viewCardId
+      icon: '',
+      properties: {
+        groupCardId: viewCardId
       },
-      "contentOrder":[],
-      "isTemplate":false
+      contentOrder: [],
+      isTemplate: false
     };
     this.title = title;
     this.createAt = Date.now();
     this.updateAt = Date.now();
     this.deleteAt = 0;
-    this.limited = false
+    this.limited = false;
   }
 }
 
 //*****************************************************************************************************/
 
 //*****************************************************************************************************/
-//*** INIT                                                                                           
+//*** INIT
 //*****************************************************************************************************/
 // Load env vars
 dotenv.config({ path: './config/config.env' });
@@ -194,15 +193,15 @@ app.use(express.json()); // to support JSON-encoded bodies
 app.use(express.urlencoded()); // to support URL-encoded bodies
 
 //*****************************************************************************************************/
-//*** Routes                                                                                           
+//*** Routes
 //*****************************************************************************************************/
 
 app.post('/', (req, res) => {
   var body = req.body;
   console.log('Received post', body);
   fetchWorkspace()
-  .then((res) => createBoard(res))  
-  .then((res) => fetchPlaybookRuns(res))
+    .then((res) => createBoard(res))
+    .then((res) => fetchPlaybookRuns(res));
   //.then((res) => createCards(res))
   res.sendStatus(200);
 });
@@ -211,10 +210,9 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
 
-
 //TODO : Class/Mod later
 //*****************************************************************************************************/
-//*** Application                                                                                           
+//*** Application
 //*****************************************************************************************************/
 
 import fetch from 'node-fetch';
@@ -272,14 +270,14 @@ function createBoard(workspace) {
 
       return {
         workspace: workspace,
-        "board": board
-      }
+        board: board
+      };
     });
 }
 
 function fetchPlaybookRuns(state) {
   let cards = [];
-  
+
   let today = new Date();
 
   const options = {
@@ -291,48 +289,56 @@ function fetchPlaybookRuns(state) {
   };
 
   return fetch(
-    process.env.MMURL + 'plugins/playbooks/api/v0/runs?playbook_id=' + process.env.playbookId,
+    process.env.MMURL +
+      'plugins/playbooks/api/v0/runs?playbook_id=' +
+      process.env.playbookId,
     options
   )
-  .then((res) => res.json())
-  .then((res) => {
-    console.log("result of fetchPlaybookRuns", res);
+    .then((res) => res.json())
+    .then((res) => {
+      console.log('result of fetchPlaybookRuns', res);
 
-    if (res.total_count > 0) {
-      res.items.forEach(playbookRun => {
-        if (playbookRun.current_status != "Finished") {
-          let durationInDays = eachDayOfInterval({'start': playbookRun.create_at, 'end': today});
+      if (res.total_count > 0) {
+        res.items.forEach((playbookRun) => {
+          if (playbookRun.current_status != 'Finished') {
+            let durationInDays = eachDayOfInterval({
+              start: playbookRun.create_at,
+              end: today
+            });
 
-          console.log('duration in days between create_at & now', durationInDays);
+            console.log(
+              'duration in days between create_at & now',
+              durationInDays
+            );
 
-          //TODO : maleable durations
-          //<=7
-          //>7 && <=14
-          //>14
+            //TODO : maleable durations
+            //<=7
+            //>7 && <=14
+            //>14
 
-          let viewCardId = "";
-          if (durationInDays <= 7) viewCardId = "";
-          if (durationInDays >= 7 && durationInDays <= 14) viewCardId = "";
-          if (durationInDays > 14) viewCardId = "";
+            let viewCardId = '';
+            if (durationInDays <= 7) viewCardId = '';
+            if (durationInDays >= 7 && durationInDays <= 14) viewCardId = '';
+            if (durationInDays > 14) viewCardId = '';
 
-          cards.push(
-            new Card(state.boardId, 
-                     state.viewBlockId, 
-                     viewCardId, 
-                     playbookRun.name)
-          )
+            cards.push(
+              new Card(
+                state.boardId,
+                state.viewBlockId,
+                viewCardId,
+                playbookRun.name
+              )
+            );
+          }
+        });
+      }
 
-        }
-      })
-    }
+      state.cards = cards;
 
-    state.cards = cards;
-
-    return state;
-  });
+      return state;
+    });
 }
 
 function returnNewUUID() {
   return uuidv4().replaceAll('-', '').substring(0, 26);
 }
-
