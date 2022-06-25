@@ -543,3 +543,57 @@ note: still need to figure out how to set properties to visible
      "limited":false
   }
 ]
+
+return from blocks POST [
+  {
+    id: 'bixa5ua83htrd8nji591trn5xgr',
+    parentId: '',
+    rootId: 'bixa5ua83htrd8nji591trn5xgr',
+    createdBy: '95dwbu7ijj859cwyhsf6ui43jh',
+    modifiedBy: '95dwbu7ijj859cwyhsf6ui43jh',
+    schema: 1,
+    type: 'board',
+    title: 'Incident Management',
+    fields: {
+      cardProperties: [Array],
+      columnCalculations: [],
+      description: '',
+      icon: '',
+      isTemplate: false,
+      showDescription: false,
+      templateVer: 0
+    },
+    createAt: 1656191462797,
+    updateAt: 1656191462797,
+    deleteAt: 0,
+    workspaceId: 'aywk7z3jnbf37mjt4fr4jg9wry'
+  },
+  {
+    id: 'vuzcf3cqcojbefdhu8c8u3yaera',
+    parentId: 'bixa5ua83htrd8nji591trn5xgr',
+    rootId: 'bixa5ua83htrd8nji591trn5xgr',
+    createdBy: '95dwbu7ijj859cwyhsf6ui43jh',
+    modifiedBy: '95dwbu7ijj859cwyhsf6ui43jh',
+    schema: 1,
+    type: 'view',
+    title: 'Board View',
+    fields: {
+      cardOrder: [],
+      collapsedOptionIds: [],
+      columnCalculations: {},
+      columnWidths: {},
+      defaultTemplateId: '',
+      filter: [Object],
+      hiddenOptionIds: [Array],
+      kanbanCalculations: {},
+      sortOptions: [],
+      viewType: 'board',
+      visibleOptionIds: [],
+      visiblePropertyIds: [Array]
+    },
+    createAt: 1656191462830,
+    updateAt: 1656191462830,
+    deleteAt: 0,
+    workspaceId: 'aywk7z3jnbf37mjt4fr4jg9wry'
+  }
+]
