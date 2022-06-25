@@ -162,7 +162,7 @@ class Card {
     this.fields = {
       icon: '',
       properties: {
-        groupCardId: viewCardId
+        viewBlockId: viewCardId
       },
       contentOrder: [],
       isTemplate: false
@@ -201,8 +201,8 @@ app.post('/', (req, res) => {
   console.log('Received post', body);
   fetchWorkspace()
     .then((res) => createBoard(res))
-    .then((res) => fetchPlaybookRuns(res));
-  //.then((res) => createCards(res))
+    .then((res) => fetchPlaybookRuns(res))
+    .then((res) => createCards(res))
   res.sendStatus(200);
 });
 
@@ -269,8 +269,8 @@ function createBoard(workspace) {
       console.log('return from blocks POST', res);
 
       return {
-        workspace: workspace,
-        board: board
+        "workspace": workspace,
+        "ids": ids
       };
     });
 }
@@ -317,14 +317,17 @@ function fetchPlaybookRuns(state) {
             //>14
 
             let viewCardId = '';
-            if (durationInDays <= 7) viewCardId = '';
-            if (durationInDays >= 7 && durationInDays <= 14) viewCardId = '';
-            if (durationInDays > 14) viewCardId = '';
+            if (durationInDays <= 7) viewCardId = state.ids.viewCardLT7DaysId;
+            if (durationInDays >= 7 && durationInDays <= 14) viewCardId = state.ids.viewCardLT14DaysId;
+            if (durationInDays > 14) viewCardId = state.ids.viewCardGT14DaysId;
+
+            //TODO : temporary
+            viewCardId = state.ids.viewCardLT7DaysId;
 
             cards.push(
               new Card(
-                state.boardId,
-                state.viewBlockId,
+                state.ids.boardId,
+                state.ids.viewBlockId,
                 viewCardId,
                 playbookRun.name
               )
@@ -335,6 +338,28 @@ function fetchPlaybookRuns(state) {
 
       state.cards = cards;
 
+      return state;
+    });
+}
+
+function createCards(state) {
+  const options = {
+    method: 'POST',
+    headers: {
+      Authorization: 'Bearer ' + process.env.personalAccessToken,
+      'X-Requested-With': 'XMLHttpRequest'
+    },
+    body: JSON.stringify([state.cards])
+  };
+
+  return fetch(
+    process.env.MMURL +
+      'plugins/focalboard/api/v1/workspaces/' + workspace.id + '/blocks',
+    options
+  )
+    .then((res) => res.json())
+    .then((res) => {
+      console.log('return from createCards POST', res);
       return state;
     });
 }
