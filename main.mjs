@@ -270,7 +270,7 @@ function createBoard(workspace) {
 
       return {
         "workspace": workspace,
-        "ids": ids
+        "ids": board.ids
       };
     });
 }
