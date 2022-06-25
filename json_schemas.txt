@@ -545,55 +545,116 @@ note: still need to figure out how to set properties to visible
 ]
 
 return from blocks POST [
-  {
-    id: 'bixa5ua83htrd8nji591trn5xgr',
-    parentId: '',
-    rootId: 'bixa5ua83htrd8nji591trn5xgr',
-    createdBy: '95dwbu7ijj859cwyhsf6ui43jh',
-    modifiedBy: '95dwbu7ijj859cwyhsf6ui43jh',
-    schema: 1,
-    type: 'board',
-    title: 'Incident Management',
-    fields: {
-      cardProperties: [Array],
-      columnCalculations: [],
-      description: '',
-      icon: '',
-      isTemplate: false,
-      showDescription: false,
-      templateVer: 0
+    {
+        "id": "by6zqgbny13ygixohdhnssja8cr",
+        "parentId": "",
+        "rootId": "by6zqgbny13ygixohdhnssja8cr",
+        "createdBy": "95dwbu7ijj859cwyhsf6ui43jh",
+        "modifiedBy": "95dwbu7ijj859cwyhsf6ui43jh",
+        "schema": 1,
+        "type": "board",
+        "title": "Open Playbooks Dashboard V14",
+        "fields": {
+            "cardProperties": [
+                {
+                    "id": "azr3oh9ko8hc5yfsmapchkwwwww",
+                    "name": "Status",
+                    "options": [
+                        {
+                            "color": "propColorGreen",
+                            "id": "aqr5d3xx3wnpsr56cz3cr8wwwww",
+                            "value": "> week"
+                        },
+                        {
+                            "color": "propColorYellow",
+                            "id": "aqr5d3xx3wnpsr56cz3cr8ccccc",
+                            "value": "1-2 weeks"
+                        },
+                        {
+                            "color": "propColorRed",
+                            "id": "aqr5d3xx3wnpsr56cz3cr8ddddd",
+                            "value": "> 2 weeks"
+                        }
+                    ],
+                    "type": "select"
+                },
+                {
+                    "id": "atnyyd3tjjthgagdeg6w67wwwww",
+                    "name": "Update Status",
+                    "options": [
+                        {
+                            "color": "propColorRed",
+                            "id": "aww3n8n6xramn5c5fn3afmccccc",
+                            "value": "Overdue"
+                        },
+                        {
+                            "color": "propColorGreen",
+                            "id": "aww3n8n6xramn5c5fn3afmddddd",
+                            "value": "Current"
+                        }
+                    ],
+                    "type": "select"
+                },
+                {
+                    "id": "a4ed4sjky9wnr516fqbahdwwwww",
+                    "name": "Channel URL",
+                    "options": [],
+                    "type": "url"
+                },
+                {
+                    "id": "arp5iu3j7gqw9hro3e9yp8wwwww",
+                    "name": "Playbook Owner",
+                    "options": [],
+                    "type": "person"
+                }
+            ],
+            "columnCalculations": [],
+            "description": "",
+            "icon": "",
+            "isTemplate": false,
+            "showDescription": false,
+            "templateVer": 0
+        },
+        "createAt": 1656192278104,
+        "updateAt": 1656192278103,
+        "deleteAt": 0,
+        "workspaceId": "aywk7z3jnbf37mjt4fr4jg9wry"
     },
-    createAt: 1656191462797,
-    updateAt: 1656191462797,
-    deleteAt: 0,
-    workspaceId: 'aywk7z3jnbf37mjt4fr4jg9wry'
-  },
-  {
-    id: 'vuzcf3cqcojbefdhu8c8u3yaera',
-    parentId: 'bixa5ua83htrd8nji591trn5xgr',
-    rootId: 'bixa5ua83htrd8nji591trn5xgr',
-    createdBy: '95dwbu7ijj859cwyhsf6ui43jh',
-    modifiedBy: '95dwbu7ijj859cwyhsf6ui43jh',
-    schema: 1,
-    type: 'view',
-    title: 'Board View',
-    fields: {
-      cardOrder: [],
-      collapsedOptionIds: [],
-      columnCalculations: {},
-      columnWidths: {},
-      defaultTemplateId: '',
-      filter: [Object],
-      hiddenOptionIds: [Array],
-      kanbanCalculations: {},
-      sortOptions: [],
-      viewType: 'board',
-      visibleOptionIds: [],
-      visiblePropertyIds: [Array]
-    },
-    createAt: 1656191462830,
-    updateAt: 1656191462830,
-    deleteAt: 0,
-    workspaceId: 'aywk7z3jnbf37mjt4fr4jg9wry'
-  }
+    {
+        "id": "v8b4ygyrjptgy3xpo86nq39m31r",
+        "parentId": "by6zqgbny13ygixohdhnssja8cr",
+        "rootId": "by6zqgbny13ygixohdhnssja8cr",
+        "createdBy": "95dwbu7ijj859cwyhsf6ui43jh",
+        "modifiedBy": "95dwbu7ijj859cwyhsf6ui43jh",
+        "schema": 1,
+        "type": "view",
+        "title": "Board view",
+        "fields": {
+            "cardOrder": [],
+            "collapsedOptionIds": [],
+            "columnCalculations": {},
+            "columnWidths": {},
+            "defaultTemplateId": "",
+            "filter": {
+                "filters": [],
+                "operation": "and"
+            },
+            "hiddenOptionIds": [
+                ""
+            ],
+            "kanbanCalculations": {},
+            "sortOptions": [],
+            "viewType": "board",
+            "visibleOptionIds": [],
+            "visiblePropertyIds": [
+                "atnyyd3tjjthgagdeg6w67wwwww",
+                "a4ed4sjky9wnr516fqbahdwwwww",
+                "arp5iu3j7gqw9hro3e9yp8wwwww"
+            ]
+        },
+        "createAt": 1656192278138,
+        "updateAt": 1656192278138,
+        "deleteAt": 0,
+        "workspaceId": "aywk7z3jnbf37mjt4fr4jg9wry"
+    }
 ]
