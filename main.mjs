@@ -11,8 +11,8 @@ import { eachDayOfInterval } from 'date-fns';
 //TODO : Classes file
 class Board {
   constructor(boardTitle) {
-    const boardId = returnNewUUID();
-    const viewBlockId = returnNewUUID();
+    // const boardId = returnNewUUID();
+    // const viewBlockId = returnNewUUID();
     const viewCardLT7DaysId = returnNewUUID();
     const viewCardLT14DaysId = returnNewUUID();
     const viewCardGT14DaysId = returnNewUUID();
@@ -24,8 +24,8 @@ class Board {
     const viewBoardId = returnNewUUID();
 
     this.ids = {
-      "boardId": boardId,
-      "viewBlockId" : viewBlockId,
+      "boardId": '',
+      "viewBlockId" : '',
       "viewCardLT7DaysId" : viewCardLT7DaysId,
       "viewCardLT14DaysId" : viewCardLT14DaysId,
       "viewCardGT14DaysId" : viewCardGT14DaysId,
@@ -283,6 +283,11 @@ function createBoard(workspace) {
     .then((res) => res.json())
     .then((res) => {
       console.log('return from blocks POST', res);
+
+      res.find(block => {
+        if (block.type == 'board') board.ids.boardId = block.id;
+        if (block.type == 'view') board.ids.viewBoardId = block.id;
+      })
 
       return {
         "workspace": workspace,
