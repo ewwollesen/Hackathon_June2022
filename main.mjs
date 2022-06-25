@@ -21,7 +21,8 @@ class Board {
       "selectCardOverdueId" : returnNewUUID(),
       "selectCardCurrentId" : returnNewUUID(),
       "channelURLId" : returnNewUUID(),
-      "ownerPlaybookId" : returnNewUUID()
+      "ownerPlaybookId" : returnNewUUID(),
+      "viewBoardId" : returnNewUUID(),
     }
 
     this.id = this.ids.boardId;
@@ -32,74 +33,76 @@ class Board {
     this.createdBy="";
     this.modifiedBy="";
     this.type="board";
-    this.fields = {
-      "showDescription":false,
-        "description":"",
-        "icon":"",
-        "isTemplate":false,
-        "templateVer":0,
-        "columnCalculations":[
-           
-        ],
-        "cardProperties":[
-           {
-              "id" : this.ids.viewBlockId, 
-              "name":"Status",
-              "type":"select",
-              "options":[
-                {
-                    "id" : this.ids.viewCardLT7DaysId, 
-                    "value":"> week",
-                    "color":"propColorGreen"
-                },
-                {
-                    "id" : this.ids.viewCardLT14DaysId, //card option id 2
-                    "value":"1-2 weeks",
-                    "color":"propColorYellow"
-                },
-                {
-                    "id" : this.ids.viewCardGT14DaysId, // card option id 3
-                    "value":"> 2 weeks",
-                    "color":"propColorRed"
-                }
-              ]
-           },
-           {
-                "id" : this.ids.selectCardPropertyId, //select card property ID
-                "name": "Update Status",
-                "type": "select",
-                "options": [
-                    {
-                        "color": "propColorRed",
-                        "id" : this.ids.selectCardOverdueId, //overdue select property ID
-                        "value": "Overdue"
-                    },
-                    {
-                        "color": "propColorGreen",
-                        "id" : this.ids.selectCardCurrentId, //current select property ID
-                        "value": "Current"
-                    }
-                ]               
-            },
-            {
-                "id" : this.ids.channelURLId, //URL property ID
-                "name": "Channel URL",
-                "options": [],
-                "type": "url"
-            },
-            {
-                "id" : this.ids.ownerPlaybookId, //owner property ID
-                "name": "Person",
-                "options": [],
-                "type": "person"
-           }
-        ]
-    };
+    this.fields = new BoardFields(this.ids);
     this.title = boardTitle;
     this.createAt = Date.now();
     this.updateAt = Date.now();
     this.deleteAt = 0;
     this.limited = false
+  }
+}
+
+class BoardFields {
+  constructor(ids) {
+    this.showDescription=false;
+    this.description="";
+    this.icon="";
+    this.isTemplate=false;
+    this.templateVer=0;
+    this.columnCalculations =[];
+    this.cardProperties=[
+      {
+        "id" : ids.viewBlockId, 
+        "name":"Status",
+        "type":"select",
+        "options":[
+          {
+              "id" : ids.viewCardLT7DaysId, 
+              "value":"> week",
+              "color":"propColorGreen"
+          },
+          {
+              "id" : ids.viewCardLT14DaysId, //card option id 2
+              "value":"1-2 weeks",
+              "color":"propColorYellow"
+          },
+          {
+              "id" : ids.viewCardGT14DaysId, // card option id 3
+              "value":"> 2 weeks",
+              "color":"propColorRed"
+          }
+        ]
+      },
+      {
+          "id" : ids.selectCardPropertyId, //select card property ID
+          "name": "Update Status",
+          "type": "select",
+          "options": [
+              {
+                  "color": "propColorRed",
+                  "id" : ids.selectCardOverdueId, //overdue select property ID
+                  "value": "Overdue"
+              },
+              {
+                  "color": "propColorGreen",
+                  "id" : ids.selectCardCurrentId, //current select property ID
+                  "value": "Current"
+              }
+          ]               
+      },
+      {
+          "id" : ids.channelURLId, //URL property ID
+          "name": "Channel URL",
+          "options": [],
+          "type": "url"
+      },
+      {
+          "id" : ids.ownerPlaybookId, //owner property ID
+          "name": "Person",
+          "options": [],
+          "type": "person"
+      }
+    ]
   }
 }
 
