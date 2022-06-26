@@ -344,9 +344,6 @@ function fetchPlaybookRuns(state) {
             if (durationInDays >= 7 && durationInDays <= 14) viewCardId = state.ids.viewCardLT14DaysId;
             if (durationInDays > 14) viewCardId = state.ids.viewCardGT14DaysId;
 
-            //TODO : temporary
-            viewCardId = state.ids.viewCardLT7DaysId;
-
             cards.push(
               new Card(
                 state.ids.boardId,
