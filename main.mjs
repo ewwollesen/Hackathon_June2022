@@ -171,12 +171,17 @@ class Card {
     title,
     ownerPlaybookId,
     playbookOwnerUser,
-    selectCardPropertyValue
+    selectCardOverdueValue
   ) {
     let fieldProperties = {};
     fieldProperties[viewBlockId] = viewCardId;
     fieldProperties[ownerPlaybookId] = playbookOwnerUser;
-    fieldProperties[selectCardPropertyId] = selectCardPropertyValue;
+    if (selectCardOverdueValue < 0) {
+      fieldProperties[selectCardPropertyId] = selectCardOverdueId;
+    } else {
+      fieldProperties[selectCardPropertyId] = selectCardCurrentId;
+    }
+    
     console.log('fieldProperties', fieldProperties);
 
     this.id = returnNewUUID();
@@ -355,6 +360,8 @@ function fetchPlaybookRuns(state) {
               viewCardId = state.ids.viewCardLT14DaysId;
             if (durationInDays > 14) viewCardId = state.ids.viewCardGT14DaysId;
 
+            const lastStatusUpdateDueEpoch = distanceFromNowInDays(playbookRun.last_status_update_at + (playbookRun.previous_reminder / 1000000));
+
             cards.push(
               new Card(
                 state.ids.boardId,
@@ -362,7 +369,8 @@ function fetchPlaybookRuns(state) {
                 viewCardId,
                 playbookRun.name,
                 state.ids.ownerPlaybookId,
-                playbookRun.owner_user_id
+                playbookRun.owner_user_id,
+                lastStatusUpdateDueEpoch
               )
             );
           }
