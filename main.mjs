@@ -171,6 +171,7 @@ class Card {
     title,
     ownerPlaybookId,
     playbookOwnerUser,
+    selectCardPropertyId,
     selectCardOverdueValue
   ) {
     let fieldProperties = {};
@@ -370,6 +371,7 @@ function fetchPlaybookRuns(state) {
                 playbookRun.name,
                 state.ids.ownerPlaybookId,
                 playbookRun.owner_user_id,
+                state.ids.selectCardPropertyId,
                 lastStatusUpdateDueEpoch
               )
             );
