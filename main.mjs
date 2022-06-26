@@ -322,10 +322,12 @@ function fetchPlaybookRuns(state) {
       if (res.total_count > 0) {
         res.items.forEach((playbookRun) => {
           if (playbookRun.current_status != 'Finished') {
-            let durationInDays = eachDayOfInterval({
-              start: playbookRun.create_at,
-              end: today
-            });
+            // let durationInDays = eachDayOfInterval({
+            //   start: playbookRun.create_at,
+            //   end: today
+            // });
+
+            let durationInDays = distanceFromNowInDays(playbookRun.create_at);
 
             console.log(
               'duration in days between create_at & now',
@@ -387,4 +389,8 @@ function createCards(state) {
 
 function returnNewUUID() {
   return uuidv4().replaceAll('-', '').substring(0, 26);
+}
+
+function distanceFromNowInDays(comparisonDate) {
+ return 86400000 / (Date.now() - comparisonDate);
 }
