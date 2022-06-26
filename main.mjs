@@ -170,11 +170,13 @@ class Card {
     viewCardId,
     title,
     ownerPlaybookId,
-    playbookOwnerUser
+    playbookOwnerUser,
+    selectCardPropertyValue
   ) {
     let fieldProperties = {};
     fieldProperties[viewBlockId] = viewCardId;
     fieldProperties[ownerPlaybookId] = playbookOwnerUser;
+    fieldProperties[selectCardPropertyId] = selectCardPropertyValue;
     console.log('fieldProperties', fieldProperties);
 
     this.id = returnNewUUID();
