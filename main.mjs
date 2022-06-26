@@ -24,20 +24,20 @@ class Board {
     const viewBoardId = returnNewUUID();
 
     this.ids = {
-      "boardId": '',
-      "viewBlockId" : '',
-      "viewCardLT7DaysId" : viewCardLT7DaysId,
-      "viewCardLT14DaysId" : viewCardLT14DaysId,
-      "viewCardGT14DaysId" : viewCardGT14DaysId,
-      "selectCardPropertyId" : selectCardPropertyId,
-      "selectCardOverdueId" : selectCardOverdueId,
-      "selectCardCurrentId" : selectCardCurrentId,
-      "channelURLId" : channelURLId,
-      "ownerPlaybookId" : ownerPlaybookId,
-      "viewBoardId" :viewBoardId
+      boardId: '',
+      viewBlockId: '',
+      viewCardLT7DaysId: viewCardLT7DaysId,
+      viewCardLT14DaysId: viewCardLT14DaysId,
+      viewCardGT14DaysId: viewCardGT14DaysId,
+      selectCardPropertyId: selectCardPropertyId,
+      selectCardOverdueId: selectCardOverdueId,
+      selectCardCurrentId: selectCardCurrentId,
+      channelURLId: channelURLId,
+      ownerPlaybookId: ownerPlaybookId,
+      viewBoardId: viewBoardId
     };
 
-    console.log("my generated ids", this.ids);
+    console.log('my generated ids', this.ids);
 
     this.id = this.ids.boardId;
     this.schema = 1;
@@ -164,9 +164,17 @@ class ViewBoardFields {
 }
 
 class Card {
-  constructor(boardId, viewBlockId, viewCardId, title) {
-    let fieldProperties = {}
+  constructor(
+    boardId,
+    viewBlockId,
+    viewCardId,
+    title,
+    ownerPlaybookId,
+    playbookOwnerUser
+  ) {
+    let fieldProperties = {};
     fieldProperties[viewBlockId] = viewCardId;
+    fieldProperties[ownerPlaybookId] = playbookOwnerUser;
     console.log('fieldProperties', fieldProperties);
 
     this.id = returnNewUUID();
@@ -218,7 +226,7 @@ app.post('/', (req, res) => {
   fetchWorkspace()
     .then((res) => createBoard(res))
     .then((res) => fetchPlaybookRuns(res))
-    .then((res) => createCards(res))
+    .then((res) => createCards(res));
   res.sendStatus(200);
 });
 
@@ -284,14 +292,14 @@ function createBoard(workspace) {
     .then((res) => {
       console.log('return from blocks POST', res);
 
-      res.find(block => {
+      res.find((block) => {
         if (block.type == 'board') board.ids.boardId = block.id;
         if (block.type == 'view') board.ids.viewBoardId = block.id;
-      })
+      });
 
       return {
-        "workspace": workspace,
-        "ids": board.ids
+        workspace: workspace,
+        ids: board.ids
       };
     });
 }
@@ -341,7 +349,8 @@ function fetchPlaybookRuns(state) {
 
             let viewCardId = '';
             if (durationInDays <= 7) viewCardId = state.ids.viewCardLT7DaysId;
-            if (durationInDays >= 7 && durationInDays <= 14) viewCardId = state.ids.viewCardLT14DaysId;
+            if (durationInDays >= 7 && durationInDays <= 14)
+              viewCardId = state.ids.viewCardLT14DaysId;
             if (durationInDays > 14) viewCardId = state.ids.viewCardGT14DaysId;
 
             cards.push(
@@ -349,7 +358,9 @@ function fetchPlaybookRuns(state) {
                 state.ids.boardId,
                 state.ids.viewBlockId,
                 viewCardId,
-                playbookRun.name
+                playbookRun.name,
+                state.ids.ownerPlaybookId,
+                playbookRun.owner_user_id
               )
             );
           }
@@ -374,7 +385,9 @@ function createCards(state) {
 
   return fetch(
     process.env.MMURL +
-      'plugins/focalboard/api/v1/workspaces/' + state.workspace.id + '/blocks',
+      'plugins/focalboard/api/v1/workspaces/' +
+      state.workspace.id +
+      '/blocks',
     options
   )
     .then((res) => res.json())
@@ -389,5 +402,5 @@ function returnNewUUID() {
 }
 
 function distanceFromNowInDays(comparisonDate) {
- return  (Date.now() - comparisonDate) / 86400000;
+  return (Date.now() - comparisonDate) / 86400000;
 }
