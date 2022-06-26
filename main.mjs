@@ -392,5 +392,5 @@ function returnNewUUID() {
 }
 
 function distanceFromNowInDays(comparisonDate) {
- return 86400000 / (Date.now() - comparisonDate);
+ return  (Date.now() - comparisonDate) / 86400000;
 }
