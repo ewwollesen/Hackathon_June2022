@@ -165,22 +165,19 @@ class ViewBoardFields {
 
 class Card {
   constructor(
-    boardId,
-    viewBlockId,
+    ids,
     viewCardId,
     title,
-    ownerPlaybookId,
     playbookOwnerUser,
-    selectCardPropertyId,
     selectCardOverdueValue
   ) {
     let fieldProperties = {};
-    fieldProperties[viewBlockId] = viewCardId;
-    fieldProperties[ownerPlaybookId] = playbookOwnerUser;
+    fieldProperties[ids.viewBlockId] = viewCardId;
+    fieldProperties[ids.ownerPlaybookId] = playbookOwnerUser;
     if (selectCardOverdueValue < 0) {
-      fieldProperties[selectCardPropertyId] = selectCardOverdueId;
+      fieldProperties[ids.selectCardPropertyId] = ids.selectCardOverdueId;
     } else {
-      fieldProperties[selectCardPropertyId] = selectCardCurrentId;
+      fieldProperties[ids.selectCardPropertyId] = ids.selectCardCurrentId;
     }
     
     console.log('fieldProperties', fieldProperties);
@@ -188,8 +185,8 @@ class Card {
     this.id = returnNewUUID();
     this.schema = 1;
     this.workspaceId = '';
-    this.parentId = boardId;
-    this.rootId = boardId;
+    this.parentId = ids.boardId;
+    this.rootId = ids.boardId;
     this.createdBy = '';
     this.modifiedBy = '';
     this.type = 'card';
@@ -365,13 +362,10 @@ function fetchPlaybookRuns(state) {
 
             cards.push(
               new Card(
-                state.ids.boardId,
-                state.ids.viewBlockId,
+                state.ids,
                 viewCardId,
                 playbookRun.name,
-                state.ids.ownerPlaybookId,
                 playbookRun.owner_user_id,
-                state.ids.selectCardPropertyId,
                 lastStatusUpdateDueEpoch
               )
             );
