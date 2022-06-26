@@ -174,7 +174,7 @@ class Card {
     let fieldProperties = {};
     fieldProperties[ids.viewBlockId] = viewCardId;
     fieldProperties[ids.ownerPlaybookId] = playbookOwnerUser;
-    if (selectCardOverdueValue < 0) {
+    if (selectCardOverdueValue > 0) {
       fieldProperties[ids.selectCardPropertyId] = ids.selectCardOverdueId;
     } else {
       fieldProperties[ids.selectCardPropertyId] = ids.selectCardCurrentId;
