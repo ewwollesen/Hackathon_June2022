@@ -273,7 +273,7 @@ function fetchWorkspace() {
         (workspace) => workspace.title === process.env.channelTitle
       );
       if (workspaceObj) {
-        return { workspace : workspaceObj };
+        return { workspace: workspaceObj };
       } else {
         //TODO: channel not found
         return null;
@@ -291,18 +291,22 @@ function fetchPlaybookInfo(state) {
   };
 
   return fetch(
-    process.env.MMURL + 'plugins/playbooks/api/v0/' + process.env.playbookId,
+    process.env.MMURL +
+      'plugins/playbooks/api/v0/playbooks/' +
+      process.env.playbookId,
     options
   )
-  .then((res) => res.json())
-  .then((res) => {
-    state.playbook = [{
-      "id" : res.id, //Playbook Id
-      "title" : res.title //Playbook title
-    }];
+    .then((res) => res.json())
+    .then((res) => {
+      state.playbook = [
+        {
+          id: res.id, //Playbook Id
+          title: res.title //Playbook title
+        }
+      ];
 
-    return state;
-  })
+      return state;
+    });
 }
 
 function createBoard(state) {
@@ -366,7 +370,6 @@ function fetchPlaybookRuns(state) {
       if (res.total_count > 0) {
         res.items.forEach((playbookRun) => {
           if (playbookRun.current_status != 'Finished') {
-
             let durationInDays = distanceFromNowInDays(playbookRun.create_at);
 
             //TODO : maleable durations
@@ -380,11 +383,18 @@ function fetchPlaybookRuns(state) {
               viewCardId = state.ids.viewCardLT14DaysId;
             if (durationInDays > 14) viewCardId = state.ids.viewCardGT14DaysId;
 
-            const lastStatusUpdateDueEpoch = distanceFromNowInDays(playbookRun.last_status_update_at + (playbookRun.previous_reminder / 1000000));
+            const lastStatusUpdateDueEpoch = distanceFromNowInDays(
+              playbookRun.last_status_update_at +
+                playbookRun.previous_reminder / 1000000
+            );
 
-            let playbook = state.playbook.find(playbook => playbook.id === replaybookRun.playbook_id);
+            let playbook = state.playbook.find(
+              (playbook) => playbook.id === replaybookRun.playbook_id
+            );
 
-            const playbookTitle = playbook ? playbook.title : 'Playbook not found';
+            const playbookTitle = playbook
+              ? playbook.title
+              : 'Playbook not found';
 
             cards.push(
               new Card(
