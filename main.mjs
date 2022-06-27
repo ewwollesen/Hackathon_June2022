@@ -2,7 +2,6 @@
 // moved to ESM const dotenv = require('dotenv');
 import dotenv from 'dotenv';
 import { v4 as uuidv4 } from 'uuid';
-import { eachDayOfInterval } from 'date-fns';
 
 // const testuid = uuidv4().replaceAll('-', '').substring(0, 26);
 // console.log(testuid);
@@ -179,8 +178,6 @@ class Card {
     } else {
       fieldProperties[ids.selectCardPropertyId] = ids.selectCardCurrentId;
     }
-    
-    console.log('fieldProperties', fieldProperties);
 
     this.id = returnNewUUID();
     this.schema = 1;
@@ -227,7 +224,7 @@ app.use(express.urlencoded()); // to support URL-encoded bodies
 
 app.post('/', (req, res) => {
   var body = req.body;
-  console.log('Received post', body);
+  //console.log('Received post', body);
   fetchWorkspace()
     .then((res) => createBoard(res))
     .then((res) => fetchPlaybookRuns(res))
@@ -263,7 +260,6 @@ function fetchWorkspace() {
       const workspaceObj = res.find(
         (workspace) => workspace.title === process.env.channelTitle
       );
-      console.log(workspaceObj);
       if (workspaceObj) {
         return workspaceObj;
       } else {
@@ -295,7 +291,7 @@ function createBoard(workspace) {
   )
     .then((res) => res.json())
     .then((res) => {
-      console.log('return from blocks POST', res);
+      //console.log('return from blocks POST', res);
 
       res.find((block) => {
         if (block.type == 'board') board.ids.boardId = block.id;
@@ -330,22 +326,13 @@ function fetchPlaybookRuns(state) {
   )
     .then((res) => res.json())
     .then((res) => {
-      console.log('result of fetchPlaybookRuns', res);
+      //console.log('result of fetchPlaybookRuns', res);
 
       if (res.total_count > 0) {
         res.items.forEach((playbookRun) => {
           if (playbookRun.current_status != 'Finished') {
-            // let durationInDays = eachDayOfInterval({
-            //   start: playbookRun.create_at,
-            //   end: today
-            // });
 
             let durationInDays = distanceFromNowInDays(playbookRun.create_at);
-
-            console.log(
-              'duration in days between create_at & now',
-              durationInDays
-            );
 
             //TODO : maleable durations
             //<=7
@@ -398,7 +385,7 @@ function createCards(state) {
   )
     .then((res) => res.json())
     .then((res) => {
-      console.log('return from createCards POST', res);
+      //console.log('return from createCards POST', res);
       return state;
     });
 }
