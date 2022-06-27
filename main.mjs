@@ -389,7 +389,7 @@ function fetchPlaybookRuns(state) {
             );
 
             let playbook = state.playbook.find(
-              (playbook) => playbook.id === replaybookRun.playbook_id
+              (playbook) => playbook.id === playbookRun.playbook_id
             );
 
             const playbookTitle = playbook
