@@ -291,7 +291,7 @@ function fetchPlaybookInfo(state) {
   };
 
   return fetch(
-    process.env.MMURL + '/plugins/playbooks/api/v0/' + process.env.playbookId,
+    process.env.MMURL + 'plugins/playbooks/api/v0/' + process.env.playbookId,
     options
   )
   .then((res) => res.json())
