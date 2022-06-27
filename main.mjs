@@ -21,6 +21,7 @@ class Board {
     const channelURLId = returnNewUUID();
     const ownerPlaybookId = returnNewUUID();
     const viewBoardId = returnNewUUID();
+    const propPlaybookTitleId = returnNewUUID();
 
     this.ids = {
       boardId: '',
@@ -33,10 +34,11 @@ class Board {
       selectCardCurrentId: selectCardCurrentId,
       channelURLId: channelURLId,
       ownerPlaybookId: ownerPlaybookId,
-      viewBoardId: viewBoardId
+      viewBoardId: viewBoardId,
+      propPlaybookTitleId: propPlaybookTitleId
     };
 
-    console.log('my generated ids', this.ids);
+    //console.log('my generated ids', this.ids);
 
     this.id = this.ids.boardId;
     this.schema = 1;
@@ -133,6 +135,12 @@ class BoardFields {
         name: 'Person',
         options: [],
         type: 'person'
+      },
+      {
+        id: ids.propPlaybookTitleId, //owner property ID
+        name: 'Playbook Title',
+        options: [],
+        type: 'text'
       }
     ];
   }
@@ -145,7 +153,8 @@ class ViewBoardFields {
     this.visiblePropertyIds = [
       ids.selectCardPropertyId, //select card property ID
       ids.channelURLId, //url property ID
-      ids.ownerPlaybookId //owner property ID
+      ids.ownerPlaybookId, //owner property ID
+      ids.propPlaybookTitleId
     ];
     this.visibleOptionIds = [];
     this.hiddenOptionIds = [''];
@@ -168,7 +177,8 @@ class Card {
     viewCardId,
     title,
     playbookOwnerUser,
-    selectCardOverdueValue
+    selectCardOverdueValue,
+    playbookTitle
   ) {
     let fieldProperties = {};
     fieldProperties[ids.viewBlockId] = viewCardId;
@@ -178,6 +188,7 @@ class Card {
     } else {
       fieldProperties[ids.selectCardPropertyId] = ids.selectCardCurrentId;
     }
+    fieldProperties[ids.propPlaybookTitleId] = playbookTitle;
 
     this.id = returnNewUUID();
     this.schema = 1;
@@ -226,6 +237,7 @@ app.post('/', (req, res) => {
   var body = req.body;
   //console.log('Received post', body);
   fetchWorkspace()
+    .then((res) => fetchPlaybookInfo(res))
     .then((res) => createBoard(res))
     .then((res) => fetchPlaybookRuns(res))
     .then((res) => createCards(res));
@@ -261,7 +273,7 @@ function fetchWorkspace() {
         (workspace) => workspace.title === process.env.channelTitle
       );
       if (workspaceObj) {
-        return workspaceObj;
+        return { workspace : workspaceObj };
       } else {
         //TODO: channel not found
         return null;
@@ -269,7 +281,31 @@ function fetchWorkspace() {
     });
 }
 
-function createBoard(workspace) {
+function fetchPlaybookInfo(state) {
+  const options = {
+    method: 'GET',
+    headers: {
+      Authorization: 'Bearer ' + process.env.personalAccessToken,
+      'X-Requested-With': 'XMLHttpRequest'
+    }
+  };
+
+  return fetch(
+    process.env.MMURL + '/plugins/playbooks/api/v0/' + process.env.playbookId,
+    options
+  )
+  .then((res) => res.json())
+  .then((res) => {
+    state.playbook = [{
+      "id" : res.id, //Playbook Id
+      "title" : res.title //Playbook title
+    }];
+
+    return state;
+  })
+}
+
+function createBoard(state) {
   let board = new Board(process.env.channelTitle); // board title
   let viewBoard = new ViewBoard(board.ids);
 
@@ -285,7 +321,7 @@ function createBoard(workspace) {
   return fetch(
     process.env.MMURL +
       'plugins/focalboard/api/v1/workspaces/' +
-      workspace.id +
+      state.workspace.id +
       '/blocks',
     options
   )
@@ -298,10 +334,9 @@ function createBoard(workspace) {
         if (block.type == 'view') board.ids.viewBoardId = block.id;
       });
 
-      return {
-        workspace: workspace,
-        ids: board.ids
-      };
+      state.ids = board.ids;
+
+      return state;
     });
 }
 
@@ -347,13 +382,18 @@ function fetchPlaybookRuns(state) {
 
             const lastStatusUpdateDueEpoch = distanceFromNowInDays(playbookRun.last_status_update_at + (playbookRun.previous_reminder / 1000000));
 
+            let playbook = state.playbook.find(playbook => playbook.id === replaybookRun.playbook_id);
+
+            const playbookTitle = playbook ? playbook.title : 'Playbook not found';
+
             cards.push(
               new Card(
                 state.ids,
                 viewCardId,
                 playbookRun.name,
                 playbookRun.owner_user_id,
-                lastStatusUpdateDueEpoch
+                lastStatusUpdateDueEpoch,
+                playbookTitle
               )
             );
           }
